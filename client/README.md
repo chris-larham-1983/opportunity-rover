@@ -70,6 +70,89 @@ embark upon:
 <pre>
 * Be sure to push 'package-lock.json' to GitHub as Heroku uses
   the lock files to build the expected dependency tree
+* Move all files from the 'server' directory into the <em>root</em>
+  directory, then delete the 'server' directory
+* Run 'npm run build' in the 'client' directory, to obtain a 'build' folder
+* Change 'index.js' port code to: const PORT = process.env.PORT || 5000;
+                                  ...
+                                  app.listen(PORT, () => {
+                                  console.log(`Server is starting on port ${PORT}.`);
+* Add this code to 'index.js': const path = require("path"); //join directory paths together
+                               if(process.env.NODE_ENV === "production") {
+                                    app.use(express.static(path.join(__dirname, "client/build")));
+                                 //OR app.use(express.static("client/build"));
+                                 //OR app.use("/", express.static("client/build"));   
+                               } 
+                               ...
+                               app.get("*", (req, res) => {
+                                    res.sendFile(path.join(__dirname, "client/build/index.html"));
+                                });
+* npm install dotenv (loads environment variables from .env)
+* In '.env' (root folder): PG_USER = postgres
+                           PG_PASSWORD = [password]
+                           PG_HOST = localhost
+                           PG_PORT = 5432
+                           PG_DATABASE = pernstack
+* In 'db.js': require('dotenv').config();
+              const devConfig = {
+                user: process.env.PG_USER,
+                password: process.env.PG_PASSWORD,
+                host: process.env.PG_HOST,
+                database: process.env.PG_DATABASE,
+                port: process.env.PG_PORT
+              };
+              const proConfig = {
+                connectionString: process.env.DATABASE_URL //heroku addons
+              };
+              const pool = new Pool(process.env.NODE_ENV === 'production'? proConfig: devConfig);
+           OR 
+              const devConfig = `postgresql://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`;
+              const proConfig = process.env.DATABASE_URL;
+              const pool = new Pool({
+                    connectionString: process.env.NODE_ENV === 'production'? proConfig: devConfig
+              });
+           From <em>The Stoic Programmers</em>' video on deploying a PERN app to Heroku (https://www.youtube.com/watch?v=ZJxUOOND5_A):
+           ~ The Order Heroku runs your scripts: ~
+           1. heroku-prebuild script
+           2. npm install (reads package.json and sees what dependencies need to be installed)
+           3. heroku-postbuild script 
+           4. Run start script (node server.js)   
+           <strong>package.json:</strong> (previously in the 'server' folder)
+           Add this code - 
+                "engines": {
+                    "node": "16.14.0",
+                    "npm": "8.10.0"
+                },
+                "scripts": {
+                    "start": "node index.js",
+                    "heroku-postbuild": "cd client && npm install && npm run build"
+                },
+                ...
+                "proxy": "http://localhost:5000"
+           <strong>Client-side configuration:</strong>
+           ~ client/src/components/EditTodos.js && InputTodos && ListTodos:
+           remove 'http://localhost:5000' from fetch requests
+           - delete client/node_modules and client/package-lock.json, then run npm install, then turn react application off and then back on
+             and that should reset your cache
+           (inside .gitignore):
+           /node_modules
+           .env
+           <strong>heroku login</strong>
+           <strong>heroku create pern-todo-application</strong>
+           <strong>heroku addons:create heroku-postgresql:hobby-dev -a pern-todo-application</strong>
+           <strong>heroku pg:psql -a pern-todo-application</strong>
+           database has been created, so we just need CREATE TABLE todo(
+                                                        todo_id SERIAL PRIMARY KEY,
+                                                        description VARCHAR(255)
+                                                      );
+           (other useful commands): DROP TABLE todo;
+                                    \q (quit)
+                                    cat fileName (prints contents of file) |(pipe contents to... ->) heroku pg:psql pern-todo-application
+                                    -- OR /* */ for SQL comments
+           
+           <strong>heroku git:remote -a pern-todo-application</strong>
+           <strong>git push heroku master</strong>
+           <strong>heroku open</strong>
 </pre>
 
 ## GitHub Notes:
@@ -77,4 +160,6 @@ embark upon:
 <pre>
 * git pull origin main --allow-unrelated-histories
 * git push origin main
+* ls -a (see all files in directory)
+* git rm --cached .env
 </pre>
