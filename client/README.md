@@ -64,3 +64,10 @@ embark upon:
 * touch ListTodos.js (creates a file named 'ListTodos.js')
 * touch EditTodo.js (creates a file named 'EditTodo.js')
 </pre>
+
+## Deploying to Heroku Notes:
+
+<pre>
+* Be sure to push 'package-lock.json' to GitHub as Heroku uses
+  the lock files to build the expected dependency tree
+</pre>
