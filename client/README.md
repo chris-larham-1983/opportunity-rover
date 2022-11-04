@@ -71,3 +71,10 @@ embark upon:
 * Be sure to push 'package-lock.json' to GitHub as Heroku uses
   the lock files to build the expected dependency tree
 </pre>
+
+## GitHub Notes:
+
+<pre>
+* git pull origin main --allow-unrelated-histories
+* git push origin main
+</pre>
