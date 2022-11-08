@@ -17,6 +17,7 @@ embark upon:
 * npm i express pg cors (installs a package that allows client -- server communication)
 * npm i -g nodemon (installs a package that automatically restarts the node application when file changes are detected)
 * touch index.js (creates a file called 'index.js')
+* node index.js (to start application server-side)
 * cd ../ (back up one directory)
 * touch database.sql (creates a file called 'database.sql')
 * [open up command prompt]: PostgreSQL commands
