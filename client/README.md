@@ -129,7 +129,7 @@ embark upon:
                     "heroku-postbuild": "cd client && npm install && npm run build"
                 },
                 ...
-                "proxy": "http://localhost:5000"
+                <strong>(client-side package.json:)</strong> "proxy": "http://localhost:5000"
            <strong>Client-side configuration:</strong>
            ~ client/src/components/EditTodos.js && InputTodos && ListTodos:
            remove 'http://localhost:5000' from fetch requests
@@ -163,4 +163,5 @@ embark upon:
 * git push origin main
 * ls -a (see all files in directory)
 * git rm --cached .env
+* git rename origin backup
 </pre>
