@@ -165,3 +165,12 @@ embark upon:
 * git rm --cached .env
 * git rename origin backup
 </pre>
+
+## Useful Command Line Commands:
+* To write directly to a file: 
+<pre>
+cat >> fileName.fileExtension << EOF
+Text that you want to write...
+...to the file
+EOF
+</pre>
