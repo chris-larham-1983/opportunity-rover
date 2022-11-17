@@ -147,7 +147,7 @@ embark upon:
            .env
            <strong>heroku login</strong>
            <strong>heroku create pern-todo-application</strong>
-           <strong>heroku addons:create heroku-postgresql:hobby-dev -a pern-todo-application</strong>
+           <strong>heroku addons:create heroku-postgresql:mini -a pern-todo-application</strong> ($5/month max plan)
            <strong>heroku pg:psql -a pern-todo-application</strong>
            database has been created, so we just need CREATE TABLE todo(
                                                         todo_id SERIAL PRIMARY KEY,
