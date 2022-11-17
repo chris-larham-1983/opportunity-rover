@@ -129,7 +129,14 @@ embark upon:
                     "heroku-postbuild": "cd client && npm install && npm run build"
                 },
                 ...
-                <strong>(client-side package.json:)</strong> "proxy": "http://localhost:5000"
+                <strong>(client-side package.json:)</strong> 
+                ADD: "proxy": "http://localhost:5000"
+                "eslintConfig": {
+                    "extends": [
+                      "react", // <--- DELETE THIS LINE TO AVOID ESLINT CONFLICT ISSUES WHEN DEPLOYING TO HEROKU
+                      "react-app/jest"
+                    ]
+                  }
            <strong>Client-side configuration:</strong>
            ~ client/src/components/EditTodos.js && InputTodos && ListTodos:
            remove 'http://localhost:5000' from fetch requests
