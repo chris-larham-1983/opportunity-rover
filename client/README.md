@@ -32,6 +32,8 @@ embark upon:
     description VARCHAR(255)
 );
 * \dt
+* \x on (turns on expanded display)
+* create extension if not exists "uuid-ossp";
 * SELECT * FROM todo;
 * [POSTMAN]: tool for testing API endpoints
 * body -> raw -> JSON
@@ -63,9 +65,9 @@ embark upon:
 * cd components (change into the 'components' directory)
 * touch InputTodo.js (creates a file named 'InputTodo.js')
 * touch ListTodos.js (creates a file named 'ListTodos.js')
-* touch EditTodo.js (creates a file named 'EditTodo.js')
+* touch EditWishlist.js (creates a file named 'EditWishlist.js')
 </pre>
-
+-----------------------------------------------------------------------
 ## Deploying to Heroku Notes:
 
 <pre>
@@ -162,7 +164,7 @@ embark upon:
            <strong>git push heroku master</strong>
            <strong>heroku open</strong>
 </pre>
-
+---------------------------------------------------------------------------------------------------------
 ## GitHub Notes:
 
 <pre>
@@ -172,7 +174,7 @@ embark upon:
 * git rm --cached .env
 * git rename origin backup
 </pre>
-
+------------------------------------------------------------------------------------------------------
 ## Useful Command Line Commands:
 * To write directly to a file: 
 <pre>
@@ -181,3 +183,64 @@ Text that you want to write...
 ...to the file
 EOF
 </pre>
+-------------------------------------------------------------------------------------------------------
+## View the application at: https://pern-todo-application.herokuapp.com
+-------------------------------------------------------------------------------------------------------
+Useful psql Commands:
+
+\d+ table_name: shows all details of the 'table_name' table
+
+-------------------------------------------------------------------------------------------------------
+Notes made while watching the Stripe Integration video by 'Fullstackstudent' on YouTube (https://www.youtube.com/watch?v=YTc0Zi70Ajm):
+
+npm install express stripe cors 
+npm i -D dotenv nodemon
+- need a <em>line_items</em> array of product objects that the customer wishes to buy & the customer email at a minimum
+- stripe checkout session configuration can be found in api/checkout.js
+- payment_method_types; cancel_url; success_url required
+- FORMAT OF <em>line_items</em>:
+<pre>
+{
+    "line_items":
+    [
+        {
+            "quantity": 1,
+            "price_data": {
+                "currency": "gbp",
+                "unit_amount": 2800,
+                "product_data": {
+                    "name": "Cumulus",
+                    "description": "Light as air. The Cumulus is encased in cloud-like waterproof
+                                    nylon and has a spacious main interior. Collapse it for easy
+                                    travel and snap it shut with magnetic closures.",
+                    "images": [
+                        "https://i.ibb.co/NtpJ0XQ/cumulus-olive.png"
+                    ]
+                }
+            }
+        }
+    ],
+    "customer_email": "abdi@gmail.com"
+}                    
+</pre>
+Front-end Stripe dependencies:
+
+npm i @stripe/react-stripe-js @stripe/stripe-js
+- set REACT_APP_PUBLISHABLE_KEY in client-side .env file
+
+Sample data to enter in the Stripe checkout details:
+
+United Kingdom
+john smith
+123 street
+
+London
+he8 tra
+
+4242424242424242
+03/23 (any date in the future)   321 (any three digits)
+
+npm install --save-dev cross-env (allows specification of browser when running a react app)
+
+stripe listen --forward-to http://localhost:3000/webhook
+const API = (process.env.NODE_ENV === 'production')? 'https://mars-imgs-ecommerce.herokuapp.com': 'http://localhost:5000'; //localhost / deployed website URL
