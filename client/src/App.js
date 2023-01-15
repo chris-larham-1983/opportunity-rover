@@ -50,14 +50,14 @@ function App() {
             <ToastContainer position="top-center" className={styles.toastStyles} />
             <Router>
                 <Routes>
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/login" element={isAuthenticated? <Navigate to="/martiandashboard" /> : <Login setIsAuthenticated={setIsAuthenticated} />} />
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/register" element={isAuthenticated? <Navigate to="/martiandashboard" />: <Register setIsAuthenticated={setIsAuthenticated} />} />
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/martiandashboard" element={isAuthenticated? <Dashboard setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} /> : <Navigate to="/login" />} />
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/martianproducts" element={<Products setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />} />
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/martianproducts/:id" element={<Product setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />} />
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/martiancart" element={isAuthenticated? <Cart setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />: <Navigate to="/login" />} />
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/success" element={<Success />} />
-                    <Route exact path="https://mars-imgs-ecommerce.herokuapp.com/canceled" element={<Cancelled />} />
+                    <Route exact path="/login" element={isAuthenticated? <Navigate to="/martiandashboard" /> : <Login setIsAuthenticated={setIsAuthenticated} />} />
+                    <Route exact path="/register" element={isAuthenticated? <Navigate to="/martiandashboard" />: <Register setIsAuthenticated={setIsAuthenticated} />} />
+                    <Route exact path="/martiandashboard" element={isAuthenticated? <Dashboard setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} /> : <Navigate to="/login" />} />
+                    <Route exact path="/martianproducts" element={<Products setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />} />
+                    <Route exact path="/martianproducts/:id" element={<Product setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />} />
+                    <Route exact path="/martiancart" element={isAuthenticated? <Cart setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />: <Navigate to="/login" />} />
+                    <Route exact path="/success" element={<Success />} />
+                    <Route exact path="/canceled" element={<Cancelled />} />
                     <Route path="/*" element={isAuthenticated? <Dashboard setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} /> : <Navigate to="/login" />} />
                 </Routes>
             </Router>
