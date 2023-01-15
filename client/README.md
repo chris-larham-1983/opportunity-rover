@@ -159,6 +159,7 @@ embark upon:
                                     \q (quit)
                                     cat fileName (prints contents of file) |(pipe contents to... ->) heroku pg:psql pern-todo-application
                                     -- OR /* */ for SQL comments
+                                    CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; //for uuid data type
            
            <strong>heroku git:remote -a pern-todo-application</strong>
            <strong>git push heroku master</strong>
@@ -173,6 +174,8 @@ embark upon:
 * ls -a (see all files in directory)
 * git rm --cached .env
 * git rename origin backup
+* git show-ref (show local branch names)
+* git remote -v (show remotes)
 </pre>
 ------------------------------------------------------------------------------------------------------
 ## Useful Command Line Commands:
