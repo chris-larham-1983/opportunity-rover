@@ -10,21 +10,14 @@ const path = require('path');
 //stripe functions
 const createCheckoutSession = require('./api/checkout');
 const webhook = require('./api/webhook');
-//import pages to display when page is refreshed
-const Dashboard = require('./client/src/pages/Dashboard');
-const Products = require('./client/src/pages/Products');
-const Product = require('./client/src/pages/Product');
-const Cart = require('./client/src/pages/Cart');
-const Cancelled = require('./client/src/pages/Cancelled');
-const Success = require('./client/src/pages/Success');
 
 //display the above pages when the page is refreshed
-app.get('/martiandashboard', (req, res) => res.send(Dashboard));
-app.get('/martianproducts', (req, res) => res.send(Products));
-app.get('/martianproducts/:id', (req, res) => res.send(Product));
-app.get('/martiancart', (req, res) => res.send(Cart));
-app.get('/canceled', (req, res) => res.send(Cancelled));
-app.get('/success', (req, res) => res.send(Success));
+app.get('/martiandashboard', (req, res) => res.send('/martiandashboard'));
+app.get('/martianproducts', (req, res) => res.send('/martianproducts'));
+app.get('/martianproducts/:id', (req, res) => res.send('/martianproducts/:id'));
+app.get('/martiancart', (req, res) => res.send('/martiancart'));
+app.get('/canceled', (req, res) => res.send('/canceled'));
+app.get('/success', (req, res) => res.send('/success'));
 
 //middleware
 app.use(cors()); //allows the front end to communicate with the back end (REACT <--> NODE)
