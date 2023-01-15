@@ -24,11 +24,6 @@ if(process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
-//display pages correctly when the page is refreshed
-app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
-
 //ROUTES:
 
 //register and login routes
@@ -88,6 +83,11 @@ app.use((err, req, res, next) => {
         default:
             res.status(500).send(err.message);
     }
+});
+
+//display pages correctly when the page is refreshed
+app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 //start server
