@@ -10,6 +10,21 @@ const path = require('path');
 //stripe functions
 const createCheckoutSession = require('./api/checkout');
 const webhook = require('./api/webhook');
+//import pages to display when page is refreshed
+import Dashboard from './client/src/pages/Dashboard';
+import Products from './client/src/pages/Products';
+import Product from './client/src/pages/Product';
+import Cart from './client/src/pages/Cart';
+import Cancelled from './client/src/pages/Cancelled';
+import Success from './client/src/pages/Success';
+
+//display the above pages when the page is refreshed
+app.get('/martiandashboard', (req, res) => res.send(Dashboard));
+app.get('/martianproducts', (req, res) => res.send(Products));
+app.get('/martianproducts/:id', (req, res) => res.send(Product));
+app.get('/martiancart', (req, res) => res.send(Cart));
+app.get('/canceled', (req, res) => res.send(Cancelled));
+app.get('/success', (req, res) => res.send(Success));
 
 //middleware
 app.use(cors()); //allows the front end to communicate with the back end (REACT <--> NODE)
