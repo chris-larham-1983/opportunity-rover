@@ -24,30 +24,9 @@ if(process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
-//display the following pages when the page is refreshed
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Register'));
-});
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Login'));
-});
-app.get('/martiandashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Dashboard'));
-})
-app.get('/martianproducts', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Products'));
-});
-app.get('/martianproducts/:id', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Product'));
-});
-app.get('/martiancart', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Cart'));
-});
-app.get('/canceled', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Cancelled'));
-});
-app.get('/success', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/src/pages/Success'));
+//display pages correctly when the page is refreshed
+app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 //ROUTES:
