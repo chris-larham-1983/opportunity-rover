@@ -184,14 +184,14 @@ Text that you want to write...
 EOF
 </pre>
 -------------------------------------------------------------------------------------------------------
-## View the application at: https://pern-todo-application.herokuapp.com
--------------------------------------------------------------------------------------------------------
-Useful psql Commands:
+View the application at: https://pern-todo-application.herokuapp.com
+
+## Useful psql Commands:
 
 \d+ table_name: shows all details of the 'table_name' table
 
 -------------------------------------------------------------------------------------------------------
-Notes made while watching the Stripe Integration video by 'Fullstackstudent' on YouTube (https://www.youtube.com/watch?v=YTc0Zi70Ajm):
+## Notes made while watching the Stripe Integration video by 'Fullstackstudent' on YouTube (https://www.youtube.com/watch?v=YTc0Zi70Ajm):
 
 npm install express stripe cors 
 npm i -D dotenv nodemon
@@ -223,12 +223,11 @@ npm i -D dotenv nodemon
     "customer_email": "abdi@gmail.com"
 }                    
 </pre>
-Front-end Stripe dependencies:
-
-npm i @stripe/react-stripe-js @stripe/stripe-js
+### Front-end Stripe dependencies:
+* npm i @stripe/react-stripe-js @stripe/stripe-js
 - set REACT_APP_PUBLISHABLE_KEY in client-side .env file
 
-Sample data to enter in the Stripe checkout details:
+### Sample data to enter in the Stripe checkout details:
 
 United Kingdom
 john smith
@@ -240,7 +239,7 @@ he8 tra
 4242424242424242
 03/23 (any date in the future)   321 (any three digits)
 
-npm install --save-dev cross-env (allows specification of browser when running a react app)
-
 stripe listen --forward-to http://localhost:3000/webhook
-const API = (process.env.NODE_ENV === 'production')? 'https://mars-imgs-ecommerce.herokuapp.com': 'http://localhost:5000'; //localhost / deployed website URL
+* const API = (process.env.NODE_ENV === 'production')? 'https://mars-imgs-ecommerce.herokuapp.com': 'http://localhost:5000'; //localhost / deployed website URL
+
+[npm install --save-dev cross-env (allows specification of browser when running a react app)]

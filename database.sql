@@ -1,122 +1,36 @@
-CREATE DATABASE pernstack;
+-- CREATE Customers table
+CREATE TABLE Customers(
+    id bigserial PRIMARY KEY,
+    first_name varchar(30) NOT NULL,
+    last_name varchar(30) NOT NULL,
+    username varchar(30) UNIQUE NOT NULL,
+    password varchar(255) NOT NULL,
+    email varchar(320) UNIQUE NOT NULL,
+    user_id uuid DEFAULT uuid_generate_v4(),
+    is_administrator boolean DEFAULT false
+);
 
+-- CREATE Addresses table
+CREATE TABLE Addresses(
+    id bigserial PRIMARY KEY,
+    street_number varchar(30) NOT NULL,
+    street_name varchar(50) NOT NULL,
+    town varchar(100) NOT NULL,
+    county varchar(60) NOT NULL,
+    country varchar(60) NOT NULL,
+    postcode varchar(10) NOT NULL,
+    customer_id bigint REFERENCES Customers(id) NOT NULL ON DELETE CASCADE
+);
+
+-- CREATE Wishlist table
 CREATE TABLE Wishlist(
-    wishlist_id BIGSERIAL PRIMARY KEY,
-    description VARCHAR(255) NOT NULL,
-    user_name VARCHAR(30) NOT NULL REFERENCES Customers(username) ON DELETE CASCADE,
-    created_or_modified TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    wishlist_id bigserial PRIMARY KEY,
+    description varchar(255) NOT NULL,
+    user_name varchar(30) NOT NULL REFERENCES Customers(username) ON DELETE CASCADE,
+    created_or_modified timestamp with time zone DEFAULT CURRENT_TIMESTAMP
 );
 
--- add a 'user' field to 'todo' table:
-ALTER TABLE todo
-ADD user_name VARCHAR(255);
-
--- add a 'created_or_modified' field to 'todo' table:
-ALTER TABLE todo
-ADD created_or_modified TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP;
-
--- update the various todos with a new user and date of creation/modification:
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=20;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=4;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=6;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=8;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=9;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=7;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=10;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=28;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=11;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=12;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=13;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=16;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=17;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=18;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=19;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=30;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=22;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=24;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=25;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=26;
-
-UPDATE todo
-SET user_name='saint john the divine', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=23;
-
-UPDATE todo
-SET user_name='Chris Larham', created_or_modified=(SELECT CURRENT_TIMESTAMP)
-WHERE todo_id=21;
-
--- set extension
-CREATE TABLE users(
-    user_id uuid PRIMARY KEY DEFAULT
-    uuid_generate_v4(),
-    user_name VARCHAR(255) NOT NULL,
-    user_email VARCHAR(255) NOT NULL,
-    user_password VARCHAR(255) NOT NULL
-);
-
--- insert fake users
-INSERT INTO users (user_name, user_email, user_password) VALUES ('henry', 'henryly213@gmail.com', 'kthl8822');
-
---create the Products table
+--CREATE Products table
 CREATE TABLE Products(
     id bigserial PRIMARY KEY,
     item_name varchar(50) NOT NULL,
@@ -131,31 +45,12 @@ VALUES('Opportunity Rover: 2008-04-03 (Sol 1490)', 'Photo taken by the Opportuni
 	  ('Opportunity Rover: 2004-02-04 (Sol 10)', 'Photo taken by the Opportunity Rover''s Front Hazard Avoidance Camera on 2004-02-04 (expedition sol 10)', 'https://mars.nasa.gov/mer/gallery/all/1/f/010/1F129070908EDN0224P1101L0M1-BR.JPG', 800),
       ('Opportunity Rover: 2004-01-26 (Sol 1)', 'Photo taken by the Opportunity Rover''s Panoramic Camera on 2004-01-26 (expedition sol 1)', 'https://mars.nasa.gov/mer/gallery/all/1/p/001/1P128287426EFF0000P2303L2M1-BR.JPG', 600),
       ('Opportunity Rover: 2004-01-26 (Sol 1)', 'Photo taken by the Opportunity Rover''s Navigation Camera on 2004-01-26 (expedition sol 1)', 'https://mars.nasa.gov/mer/gallery/all/1/n/001/1N128285132EDN0000P1500R0M1-BR.JPG', 700),
-      ('Opportunity Rover: 2004-01-26 (Sol 1)', 'Photo taken by the Opportunity Rover''s Rear Hazard Avoidance Camera on 2004-01-26 (expedition sol 1)', 'https://mars.nasa.gov/mer/gallery/all/1/r/001/1R128285184EDN0000P1002L0M1-BR.JPG', 900);
-
--- CREATE Customers table
-CREATE TABLE Customers(
-    id bigserial PRIMARY KEY,
-    first_name varchar(30) NOT NULL,
-    last_name varchar(30) NOT NULL,
-    username varchar(30) NOT NULL,
-    password varchar(255) NOT NULL,
-    email varchar(320) NOT NULL,
-    user_id uuid DEFAULT uuid_generate_v4(),
-    is_administrator boolean DEFAULT false
-);
-
--- CREATE Addresses table
-CREATE TABLE Addresses(
-    id bigserial PRIMARY KEY,
-    street_number VARCHAR(30) NOT NULL,
-    street_name varchar(50) NOT NULL,
-    town varchar(100) NOT NULL,
-    county VARCHAR(60) NOT NULL,
-    country VARCHAR(60) NOT NULL,
-    postcode VARCHAR(10) NOT NULL,
-    customer_id bigint REFERENCES Customers(id) NOT NULL ON DELETE CASCADE
-);
+      ('Opportunity Rover: 2004-01-26 (Sol 1)', 'Photo taken by the Opportunity Rover''s Rear Hazard Avoidance Camera on 2004-01-26 (expedition sol 1)', 'https://mars.nasa.gov/mer/gallery/all/1/r/001/1R128285184EDN0000P1002L0M1-BR.JPG', 900),
+      ('Opportunity Rover: 2009-11-10 (Sol 2060)', 'Photo taken by the Opportunity Rover''s Panoramic Camera on 2009-11-10 (expedition sol 2060)', 'http://mars.nasa.gov/mer/gallery/all/1/p/2060/1P311056692EFFA9PDP2448L7M1-BR.JPG', 999),
+      ('Opportunity Rover: 2012-09-14 (Sol 3071)', 'Photo taken by the Opportunity Rover''s Panoramic Camera on 2012-09-14 (expedition sol 3071)', 'http://mars.nasa.gov/mer/gallery/all/1/n/3071/1N400818123EFFBW00P1978L0M1-BR.JPG', 899),
+      ('Opportunity Rover: 2015-10-19 (Sol 4171)', 'Photo taken by the Opportunity Rover''s Panoramic Camera on 2015-10-19 (expedition sol 4171)', 'http://mars.nasa.gov/mer/gallery/all/1/p/4171/1P498467649EFFCONGP2363L2M1-BR.JPG', 1099),
+      ('Opportunity Rover: 2018-04-27 (Sol 5067)', 'Photo taken by the Opportunity Rover''s Panoramic Camera on 2018-04-27 (expedition sol 5067)', 'https://mars.nasa.gov/mer/gallery/all/1/p/5067/1P578008813EFFD2CWP2365L2M1-BR.JPG', 1299),
+      ('Opportunity Rover: 2005-07-06 (Sol 514)', 'Photo taken by the Opportunity Rover''s Panoramic Camera on 2005-07-06 (expedition sol 514)', 'https://mars.nasa.gov/mer/gallery/all/1/p/514/1P173813405EFF55XKP2763R7M1-BR.JPG', 1299);
 
 -- Create Cart table
 CREATE TABLE Cart(
@@ -167,7 +62,8 @@ CREATE TABLE Cart(
     product_price integer NOT NULL,
     product_quantity integer NOT NULL,
     cumulative_product_price integer NOT NULL,
-    cart_total integer
+    cart_total integer,
+    added_to_cart timestamp NOT NULL
 );
 
 -- Create Orders table
@@ -177,6 +73,3 @@ CREATE TABLE Orders(
     date_of_purchase timestamp NOT NULL,
     cart json[] NOT NULL
 );
- --ALTER TABLE Orders DROP CONSTRAINT orders_customer_id_fkey, ADD CONSTRAINT orders_customer_id_fkey FOREIGN KEY(customer_id) REFERENCES Customers(id) ON DELETE CASCADE
- --CREATE SEQUENCE wishlist_id_seq MINVALUE 38; ALTER TABLE wishlist ALTER wishlist_id SET DEFAULT nextval('wishlist_id_seq'); ALTER SEQUENCE wishlist_id_seq OWNED BY wishlist.wishlist_id;
- -- SELECT last_value FROM sequence_name;
