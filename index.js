@@ -11,12 +11,12 @@ const path = require('path');
 const createCheckoutSession = require('./api/checkout');
 const webhook = require('./api/webhook');
 //import pages to display when page is refreshed
-import Dashboard from './client/src/pages/Dashboard';
-import Products from './client/src/pages/Products';
-import Product from './client/src/pages/Product';
-import Cart from './client/src/pages/Cart';
-import Cancelled from './client/src/pages/Cancelled';
-import Success from './client/src/pages/Success';
+const Dashboard = require('./client/src/pages/Dashboard');
+const Products = require('./client/src/pages/Products');
+const Product = require('./client/src/pages/Product');
+const Cart = require('./client/src/pages/Cart');
+const Cancelled = require('./client/src/pages/Cancelled');
+const Success = require('./client/src/pages/Success');
 
 //display the above pages when the page is refreshed
 app.get('/martiandashboard', (req, res) => res.send(Dashboard));
