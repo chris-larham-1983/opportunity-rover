@@ -13,7 +13,7 @@ const DashboardHeader = ({ h2Text, itemsInCart }) => {
     return (
         <div className={styles.dashboardHeaderStyles}>
             <h2 className={styles.dashboardH2Styles}>{ h2Text }!</h2>
-            <Link to={'/cart'} className={styles.cartLinkStyles}>
+            <Link to={'/martiancart'} className={styles.cartLinkStyles}>
                 <span style={{textAlign: "right", width: "100%", marginRight: "10px"}}>
                     <span style={{backgroundColor: "khaki"}}>Cart {itemsInCart? numItems:""}</span>
                 </span>

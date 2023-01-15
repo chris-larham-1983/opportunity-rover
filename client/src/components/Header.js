@@ -28,12 +28,12 @@ const Header = ({ navButtons, setIsAuthenticated, isAuthenticated }) => {
                                 <button className={styles.logoutButton} onClick={e => logout(e)}>Logout</button>
                             </li>: navButton === 'Shop'?
                             <li key="products" className={styles.headerNavUlLiStyles}>
-                                <Link to={'/products'} className={styles.headerNavUlLiLinkStyles}>
+                                <Link to={'/martianproducts'} className={styles.headerNavUlLiLinkStyles}>
                                     {navButton}
                                 </Link>
                             </li>:
                             <li key={`${navButton.toLowerCase()}`} className={styles.headerNavUlLiStyles}>
-                                <Link to={`/${navButton.toLowerCase()}`} className={styles.headerNavUlLiLinkStyles}>
+                                <Link to={`/martian${navButton.toLowerCase()}`} className={styles.headerNavUlLiLinkStyles}>
                                     {navButton}
                                 </Link>
                             </li>

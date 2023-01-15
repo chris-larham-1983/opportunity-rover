@@ -19,7 +19,7 @@ CREATE TABLE Addresses(
     county varchar(60) NOT NULL,
     country varchar(60) NOT NULL,
     postcode varchar(10) NOT NULL,
-    customer_id bigint REFERENCES Customers(id) NOT NULL ON DELETE CASCADE
+    customer_id bigint NOT NULL REFERENCES Customers(id) ON DELETE CASCADE
 );
 
 -- CREATE Wishlist table
@@ -54,8 +54,8 @@ VALUES('Opportunity Rover: 2008-04-03 (Sol 1490)', 'Photo taken by the Opportuni
 
 -- Create Cart table
 CREATE TABLE Cart(
-    product_id bigint REFERENCES Products(id) NOT NULL ON DELETE CASCADE,
-    customer_id bigint REFERENCES Customers(id) NOT NULL ON DELETE CASCADE,
+    product_id bigint NOT NULL REFERENCES Products(id) ON DELETE CASCADE,
+    customer_id bigint NOT NULL REFERENCES Customers(id) ON DELETE CASCADE,
     product_name varchar(50) NOT NULL,
     product_description text NOT NULL,
     product_image_url varchar(100) NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE Cart(
 -- Create Orders table
 CREATE TABLE Orders(
     id bigserial PRIMARY KEY,
-    customer_id bigint REFERENCES Customers(id) NOT NULL ON DELETE CASCADE,
+    customer_id bigint NOT NULL REFERENCES Customers(id) ON DELETE CASCADE,
     date_of_purchase timestamp NOT NULL,
     cart json[] NOT NULL
 );

@@ -14,7 +14,7 @@ const ProductsHeader = ({ h1Text, isAuthenticated, itemsInCart }) => {
     return (
         <div className={styles.productsHeaderStyles}>
             <h1 className={styles.productH1Styles} >{h1Text}</h1>
-            {isAuthenticated && <Link to={'/cart'} className={styles.cartLinkStyles}>
+            {isAuthenticated && <Link to={'/martiancart'} className={styles.cartLinkStyles}>
                 <span style={{textAlign: "right", width: "100%", marginRight: "10px"}}>
                     <span style={{backgroundColor: "khaki"}}>Cart {itemsInCart? numItems:""}</span>
                 </span>

@@ -26,7 +26,7 @@ router.get('/:customer_id', async (req,res, next) => {
             'WHERE customer_id = $1 ORDER BY date_of_purchase DESC', [customer_id]);
         //return an empty array if the customer has not made any orders
         if(customerOrders.rows.length === 0) {
-            return [];
+            return res.status(200).json([]);
         }
         //return the customer's order history
         res.status(200).json(customerOrders.rows);
