@@ -28,7 +28,8 @@ The application had to satisfy the following requirements:
 - be developed locally 
 - be published on Heroku
 
-In addition, I added the ability for logged-in users to add items to their wishlist, and for them to update their delivery address.
+In addition, I added the ability for logged-in users to add items to their wishlist, and for them to update their delivery address.  A basic email 
+is also sent to the customer on completion of a successful transaction.
 
 ***
 
