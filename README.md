@@ -6,7 +6,7 @@
 * [Project Flow Diagram](#project-flow-diagram)
 * [Entity Relationship Diagram](#entity-relationship-diagram)
 * [Technologies](#technologies)
-* [Using the API](#using-the-api)
+* [Using the App](#using-the-app)
 * [License](#license)
 
 ***
@@ -64,11 +64,13 @@ I wrote this **e-commerce application** using the following technologies:
 - *Project Flow Diagram (LucidSpark)*  
 ***
 
-### Using the API
+### Using the App
 
 This e-commerce application can be viewed and interacted with:
 
 - https://mars-imgs-ecommerce.herokuapp.com
+
+***
 
 ### License
 
