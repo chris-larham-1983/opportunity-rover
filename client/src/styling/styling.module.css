@@ -35,7 +35,7 @@ html {
     justify-content: space-evenly;
     width: 99%;
     flex-wrap: wrap;
-    padding-left: 0px;
+    padding-left: 0;
 }
 .headerNavUlLiStyles {
     display: inline-flex;
@@ -192,7 +192,6 @@ input:valid {
     margin: 10px;
     width: 300px;
     height: 660px;
-    width: 310px;
     border: 5px solid #24310C;
     border-radius: 5px;
 }
@@ -364,7 +363,7 @@ input:valid {
     left: 5%;
     top: 200px;
     font-weight: bold;
-    font-color: black;
+    color: black;
     background-color: white;
     text-align: center;
 }
@@ -382,7 +381,7 @@ input:valid {
     height: 150px;
     border-radius: 3px;
     background-color: orangered;
-    font-color: black;
+    color: black;
     font-weight: bold;
     text-align: center;
     transition: font-size 1s;
@@ -393,7 +392,7 @@ input:valid {
 }
 .cartUpdateQuantityButton {
     height: 75px;
-    font-color: black;
+    color: black;
     font-weight: bold;
     text-align: center;
     border-radius: 3px;
@@ -568,4 +567,238 @@ input:valid {
         padding: 10px;
         height: fit-content;
     }
+}
+/* Audio component styling */
+.audioContainer {
+    width: 99%;
+    margin: 5px auto;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    border-radius: 3px;
+}
+.musicHeading {
+    font-size: 34px;
+    width: 99%;
+    margin: 10px auto;
+    background-color: coral;
+    text-align: center;
+    border-radius: 3px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-weight: bold;
+}
+.audioControls {
+    border: 2px solid black;
+    border-radius: 3px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    background-color: #800000;
+}
+.musicPlayer {
+    display: none;
+    height: 0;
+}
+.audio1, .audio2, .audio3, .audio4, .audio5 {
+    width: 18%;
+    margin: 1px;
+    height: 100px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: 1.25em;
+}
+.audio5 {
+    background-color: lightgreen;
+    padding: 20px;
+}
+.play, .volumeUp {
+    color: green;
+    font-size: 2em;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+.stop, .volumeDown {
+    color: red;
+    font-size: 2em;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+.progress {
+    background-color: #800000;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+}
+.musicalProgress {
+    width: 99%;
+    display: block;
+    margin: 2px auto;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+.percentage {
+    text-align: center;
+    background-color: #800000;
+    color: white;
+    font-size: 20px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+.musicCredit {
+    text-align: center;
+    background-color: #800000;
+    color: white;
+    font-size: 20px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+.appHeading {
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    background-color: black;
+    color: white;
+    font-size: 36px;
+    text-align: center;
+    width: 99%;
+    border-radius: 3px;
+    margin: 10px auto;
+}
+.missionOverview {
+    width: 100%;
+}
+.missionDescription {
+    width: 99%;
+    margin: 5px auto;
+    font-size: 30px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    text-align: center;
+    background-color: #EDBB99;
+    border-radius: 3px;
+}
+.slideshowFigure {
+    display: block;
+    position: relative;
+    margin: 10px;
+}
+.martianUrl2 {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    background-color: darkslateblue;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    word-break: break-all;
+}
+.mars {
+    width: 100%;
+    height: 650px;
+}
+.photoDescription {
+    font-size: 26px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    background-color: coral;
+}
+.roverButton {
+    width: 99%;
+    background-color: darkslateblue;
+    border-radius: 3px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 30px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    margin: 4px auto;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+.roverButton:hover {
+    color: coral;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.textCredit {
+    font-size: 26px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    text-align: center;
+    background-color: #741630;
+    color: white;
+    padding: 10px;
+    width: 99%;
+    border-radius: 3px;
+    margin: 10px auto;
+}
+.pageTraversal {
+    height: 80px;
+    margin: 10px auto;
+    width: 99%;
+    border: 1px solid #741630;
+    border-radius: 3px;
+    background-color: coral;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.desiredSol {
+    font-size: 24px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    height: 70px;
+    width: 48%;
+    border-radius: 3px;
+}
+.navigateToSol {
+    font-size: 24px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    height: 70px;
+    width: 48%;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 3px;
+}
+.positiveFeedback {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-weight: bold;
+    color: black;
+    background-color: #91bc3c;
+}
+.negativeFeedback {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-weight: bold;
+    color: black;
+    background-color: lightcoral;
+}
+.solLink {
+    height: 500px;
+    width: 320px;
+    border-radius: 3px;
+    border: 2px groove lightslategrey;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.solRepresentative {
+    width: 300px;
+    height: 300px;
+    border-radius: 3px;
+}
+.solStats {
+    text-align: center;
+    font-size: 24px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    border-radius: 3px;
+}
+.anchorStyles {
+    font-size: 24px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    color: #c1140e;
+}
+.fitContent {
+    height: fit-content;
+    width: fit-content;
 }

@@ -117,3 +117,6 @@ INSERT INTO users (user_name, user_email, user_password) VALUES ('henry', 'henry
 --ALTER TABLE Orders DROP CONSTRAINT orders_customer_id_fkey, ADD CONSTRAINT orders_customer_id_fkey FOREIGN KEY(customer_id) REFERENCES Customers(id) ON DELETE CASCADE
 --CREATE SEQUENCE wishlist_id_seq MINVALUE 38; ALTER TABLE wishlist ALTER wishlist_id SET DEFAULT nextval('wishlist_id_seq'); ALTER SEQUENCE wishlist_id_seq OWNED BY wishlist.wishlist_id;
 -- SELECT last_value FROM sequence_name;
+
+-- Delete all records relating to sol 58 after table insertion was interrupted; create a new sequence for id to follow, based on last id
+-- DELETE FROM Photos WHERE sol = 58; CREATE SEQUENCE updated_photos_id_seq MINVALUE 8455; ALTER TABLE Photos ALTER id SET DEFAULT nextval('updated_photos_id_seq'); ALTER SEQUENCE updated_photos_id_seq OWNED BY photos.id;
