@@ -63,7 +63,6 @@ const Audio = () => {
                 audioControls.setAttribute("hidden", "hidden");
             }
         }
-
     };
 
     //function invoked when the document experiences a change in visibility
@@ -138,7 +137,8 @@ const Audio = () => {
                     //try to invoke the playAudio() function
                     playAudio();
                 }
-                catch(ignore) { //if the current context disallows musical autoplay, catch and ignore the error...
+                //if the current context disallows musical autoplay, catch and ignore the error...
+                catch(ignore) {
                 }
             }
         }
@@ -253,8 +253,8 @@ const Audio = () => {
             musicalProgress.value = progressValue;
             //set the value of the 'progressPercent' page variable equal to the rounded integer representation of ((musicalProgress.value)/(musicalProgress.max))*100
             progressPercent = (musicalProgress.position) * 100;
-            //display the 'progressPercent' as a rounded integer in the 'musicalPercentage' paragraph, plus show the musical progress in MM:SS format
-            musicalPercentage.innerHTML =  "MUSICAL PROGRESS: " + Math.round(progressPercent) + "% " + displayMinsAndSecs(Math.round(progressValue));
+            //display the 'progressPercent' as a rounded-down integer in the 'musicalPercentage' paragraph, plus show the musical progress in MM:SS format
+            musicalPercentage.innerHTML =  "MUSICAL PROGRESS: " + Math.floor(progressPercent) + "% " + displayMinsAndSecs(Math.round(progressValue));
             //if the 'currentTime' of the 'musicPlayer' indicates that the track has finished...
             if(progressValue >= progressMax) {
                 //pause the music
@@ -313,8 +313,10 @@ const Audio = () => {
             preferredVolume -= 0.1;
             //set the volume of the 'musicPlayer' to the new 'preferredVolume'
             musicPlayer.volume = preferredVolume;
-            volumeDisplay.innerHTML = `${Math.round((preferredVolume * 100))}%`; //update the 'volumeDisplay' <p> element
-            localStorage.setItem("preferredVolume", preferredVolume.toString()); //store the new 'preferredVolume' in localStorage
+            //update the 'volumeDisplay' <p> element
+            volumeDisplay.innerHTML = `${Math.round((preferredVolume * 100))}%`;
+            //store the new 'preferredVolume' in localStorage
+            localStorage.setItem("preferredVolume", preferredVolume.toString());
         }
     };
 

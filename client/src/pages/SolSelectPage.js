@@ -6,6 +6,7 @@ import styles from '../styling/styling.module.css';
 import Audio from '../components/Audio/Audio';
 import AppHeading from '../components/AppHeading/AppHeading';
 import PageTraversal from "../components/PageTraversal/PageTraversal";
+import CameraAbbreviations from "../components/CameraAbbreviations/CameraAbbreviations";
 import SolLink from '../components/SolLink/SolLink';
 
 //page that displays: a link back to the app intro page; information on the camera abbreviations used in the app; and links to all sols on which the Opportunity Rover took photos
@@ -46,10 +47,13 @@ const SolSelectPage = () => {
             <Audio />
             <AppHeading />
             <PageTraversal />
-            {errorMessage && <p className={styles.negativeFeedback}>{errorMessage}</p> }
-            {manifestDetails && manifestDetails.map((manifestItem, index) => (
-                <SolLink key={index} sol={manifestItem.sol} earth_date={manifestItem.earth_date} total_photos={manifestItem.total_photos} cameras={manifestItem.cameras} />
-            ))}
+            <div className={styles.solLinkContainer}>
+                <CameraAbbreviations />
+                {errorMessage && <p className={styles.negativeFeedback}>{errorMessage}</p> }
+                {manifestDetails && manifestDetails.map((manifestItem, index) => (
+                    <SolLink key={index} sol={manifestItem.sol} earth_date={manifestItem.earth_date} total_photos={manifestItem.total_photos} cameras={manifestItem.cameras} />
+                ))}
+            </div>
         </div>
     )
 };

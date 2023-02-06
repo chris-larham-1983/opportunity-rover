@@ -1,9 +1,10 @@
 //React setup
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 //styling
 import styles from '../../styling/styling.module.css';
 
-//a component that acts a link to a specific sol on which the Opportunity Rover took photos
+//a component that acts as a link to a specific sol on which the Opportunity Rover took photos
 const SolLink = ({ sol, earth_date, total_photos, cameras }) => {
 
     //variables to store/set the first photo taken by the Opportunity Rover on this sol
@@ -37,19 +38,22 @@ const SolLink = ({ sol, earth_date, total_photos, cameras }) => {
         }
     }, []);
 
+    //<SolLink /> component presentation
     return (
         <div className={styles.fitContent}>
-        {firstPhoto &&
-            <figure className={styles.solLink}>
-                <img className={styles.solRepresentative} src={`${firstPhoto.url}`} alt={firstPhoto.alt} />
+            {firstPhoto &&
+                <figure id={firstPhoto[0].sol.toString()} className={styles.solLink} data-testid="soLink">
+                    <Link to={`/sols/${sol}`} className={styles.solRepresentative}>
+                        <img className={styles.solRepresentative} src={firstPhoto[0].url} alt={firstPhoto[0].alt} />
+                    </Link>
                     <p className={styles.solStats}>
                         Sol: {sol} ({earth_date})<br/>
                         Total Photos: {total_photos}<br/>
                         Cameras: {cameras}<br/>
                         <a className={styles.anchorStyles} href="#pageTraversal">^ Page Traversal ^</a>
                     </p>
-            </figure>
-        }
+                </figure>
+            }
         </div>
     )
 };

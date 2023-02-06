@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 //pages
 import IntroPage from './pages/IntroPage';
 import SolSelectPage from './pages/SolSelectPage';
+import SolPage from './pages/SolPage';
 import FillManifestTable from './pages/FillManifestTable';
 import FillPhotosTable from "./pages/FillPhotosTable";
 //styling
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route exact path="/intro" element={<IntroPage />} />
                     <Route exact path="/solSelect" element={<SolSelectPage />} />
+                    <Route exact path="/sols/:sol" element={<SolPage />} />
                     <Route exact path="/fillManifest" element={<FillManifestTable />} />
                     <Route exact path="/fillPhotos" element={<FillPhotosTable />} />
                     <Route path="/*" element={<Navigate to="/intro" />} />

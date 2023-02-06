@@ -772,6 +772,13 @@ input:valid {
     color: black;
     background-color: lightcoral;
 }
+.solLinkContainer {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
 .solLink {
     height: 500px;
     width: 320px;
@@ -781,24 +788,57 @@ input:valid {
     flex-flow: row wrap;
     justify-content: space-evenly;
     align-items: center;
+    margin: 10px;
+    background-color: lightblue;
 }
 .solRepresentative {
     width: 300px;
     height: 300px;
     border-radius: 3px;
+    transition: height, width 0.4s;
+}
+.solRepresentative:hover {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+.solRepresentative:hover + .solStats {
+    display: none;
 }
 .solStats {
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-weight: bold;
     border-radius: 3px;
+    padding: 3px;
 }
 .anchorStyles {
-    font-size: 24px;
+    font-size: 22px;
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    color: #c1140e;
+    color: red;
+    transition: color 0.4s;
+}
+.anchorStyles:hover {
+    color: darkblue;
 }
 .fitContent {
     height: fit-content;
     width: fit-content;
+}
+.cameraAbbreviations {
+    height: 500px;
+    width: 320px;
+    border-radius: 3px;
+    border: 2px ridge lightslategrey;
+    text-align: center;
+    margin: 10px;
+    background-color: lightblue;
+    font-size: 22px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-weight: bold;
+    padding: 40px 5px;
+}
+.martianRed {
+    color: red;
 }

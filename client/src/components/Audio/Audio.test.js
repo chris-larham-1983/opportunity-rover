@@ -11,14 +11,12 @@ describe("The Audio component", () => {
         render(<Audio />);
     });
     test("is displayed/hidden when the User clicks the 'Music' heading", () => {
-        console.log(document.getElementById("musicalPercentage").innerHTML);
         const musicHeading = screen.getByTestId("musicHeading");
-        let audioControls = screen.getByTestId("audioControls");
+        const audioControls = screen.getByTestId("audioControls");
         //don't expect the 'audioControls' <div> to be hidden initially, as it has just been rendered
         expect(audioControls.getAttribute("hidden")).toEqual("");
         //click the 'musicHeading' <h2> element and expect the 'audioControls' <div> to be hidden as a result
         fireEvent.click(musicHeading);
-        audioControls = screen.getByTestId("audioControls");
         expect(audioControls.getAttribute("hidden")).toEqual("hidden");
     });
     test("plays music when the User presses the 'PLAY' <button>", () => {
@@ -38,14 +36,11 @@ describe("The Audio component", () => {
         //click 'PLAY'
         fireEvent.click(playButton);
         expect(playStub).toHaveBeenCalled();
-        console.log(localStorage.getItem("userWantsMusic"));
-        console.log(document.getElementById("musicalPercentage").innerHTML);
         //expect pauseStub not to have been called yet
         expect(pauseStub).not.toHaveBeenCalled();
         //click 'PAUSE' and expect pauseStub to have been called
         fireEvent.click(pauseButton);
         expect(pauseStub).toHaveBeenCalled();
-        console.log(localStorage.getItem("userWantsMusic"));
         expect(localStorage.getItem("playTime")).not.toBeNull();
         localStorage.removeItem("playTime");
     })

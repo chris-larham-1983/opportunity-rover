@@ -1,5 +1,6 @@
 //testing library elements
 import { render, screen } from '@testing-library/react';
+//allow usage of 'toHaveStyle()'
 import '@testing-library/jest-dom/extend-expect';
 //React setup
 import React from 'react';

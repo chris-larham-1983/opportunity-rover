@@ -1,5 +1,5 @@
 //React setup
-import React, { useEffect } from 'react';
+import React from 'react';
 //styling
 import styles from '../../styling/styling.module.css';
 

@@ -19,7 +19,6 @@ describe("The <PhotoAccess /> component", () => {
     });
     it("has a class attribute of 'roverButton'", () => {
         const roverButton = screen.getByTestId("roverButton");
-        roverButton.style.cssText = mockStyles.standard;
         expect(roverButton.getAttribute("class")).toEqual("roverButton");
     });
     it("has a font-size of 30px", () => {

@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 //React setup
 import React from 'react';
-//AppHeading component
+//MissionOverview component
 import MissionOverview from './MissionOverview';
 //styling
 import mockStyles from './mockStyles.js';

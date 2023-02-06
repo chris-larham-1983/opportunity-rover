@@ -129,12 +129,21 @@ describe("The <PageTraversal /> component", () => {
         });
         it("enables the user to traverse the page", () => {
             cleanup();
-            const traversePageSpy = jest.fn();
-            render(<PageTraversal traversePage={traversePageSpy} />);
+            render(<div>
+                <PageTraversal />
+                <figure id='1'>Test Paragraph 1</figure>
+                <figure id='2'>Test Paragraph 2</figure>
+                <figure id='3'>Test Paragraph 3</figure>
+                <figure id='4'>Test Paragraph 4</figure>
+                <figure id='5'>Test Paragraph 5</figure>
+                <figure id='6'>Test Paragraph 6</figure>
+            </div>);
+            const desiredSol = screen.getByTestId("desiredSol");
             const navigateToSol = screen.getByTestId("navigateToSol");
-            expect(traversePageSpy).not.toHaveBeenCalled();
+            expect(window.location.href.includes("#6")).not.toBeTruthy();
+            fireEvent.change(desiredSol, { target: {value: '6' }});
             fireEvent.click(navigateToSol);
-            expect(traversePageSpy).toHaveBeenCalled();
+            expect(window.location.href.includes("#6")).toBeTruthy();
         });
         it("has a 24px 'ZCOOL QingKe HuangYou' font", () => {
             const navigateToSol = screen.getByTestId("navigateToSol");
