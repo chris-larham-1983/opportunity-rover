@@ -52,6 +52,20 @@ router.get('/:sol/filterByCameras/:cameras', async (req, res) => {
     }
 });
 
+router.get('/getRandomPhoto', async (req, res) => {
+    //select a random photo between 1 and 8770
+    const randomPhoto = Math.floor(Math.random() * 8770) + 1;
+    try {
+        //get the url and alt associated with the random photo
+        const getRandomPhoto = await pool.query('SELECT url, alt FROM photos WHERE id = $1', [randomPhoto]);
+        //return the url and alt
+        return res.status(200).json(getRandomPhoto.rows);
+    } catch(err) {
+        //return the error message on error
+        return res.status(500).json(`${err.message}`);
+    }
+});
+
 //add photo details to the photos table
 router.post('/addToPhotos', async (req, res) => {
     const { sol, earth_date, camera, url, alt, figcaption } = req.body;

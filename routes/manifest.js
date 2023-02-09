@@ -30,5 +30,18 @@ router.post('/addToManifest', async (req, res, next) => {
     }
 });
 
+//add first photo details for every sol to the manifest table
+router.post('/addFirstPhotoDetails', async(req, res) => {
+    const { firstPhotoUrl, firstPhotoAlt, sol } = req.body;
+
+    try {
+        const updateManifest = await pool.query('UPDATE manifest SET first_photo_url = $1, first_photo_alt = $2 WHERE sol = $3', [firstPhotoUrl, firstPhotoAlt, sol]);
+        return res.status(200).json(`SUCCESS!`);
+    } catch(err) {
+        console.error(err.message);
+        return res.status(500).json(`${err.message}`);
+    }
+});
+
 //export the router
 module.exports = router;

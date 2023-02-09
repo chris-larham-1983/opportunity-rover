@@ -779,7 +779,7 @@ input:valid {
     justify-content: space-evenly;
     align-items: center;
 }
-.solLink {
+.solLink, .introReturn {
     height: 500px;
     width: 320px;
     border-radius: 3px;
@@ -791,21 +791,21 @@ input:valid {
     margin: 10px;
     background-color: lightblue;
 }
-.solRepresentative {
+.solRepresentative, .introReturnRepresentative {
     width: 300px;
     height: 300px;
     border-radius: 3px;
     transition: height, width 0.4s;
 }
-.solRepresentative:hover {
+.solRepresentative:hover, .introReturnRepresentative:hover {
     cursor: pointer;
     height: 100%;
     width: 100%;
 }
-.solRepresentative:hover + .solStats {
+.solRepresentative:hover + .solStats, .introReturnRepresentative:hover + .introReturnMessage {
     display: none;
 }
-.solStats {
+.solStats, .introReturnMessage {
     text-align: center;
     font-size: 22px;
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;

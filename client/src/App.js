@@ -1,12 +1,15 @@
 //React configuration
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+//<Audio /> component
+import Audio from './components/Audio/Audio';
 //pages
 import IntroPage from './pages/IntroPage';
 import SolSelectPage from './pages/SolSelectPage';
 import SolPage from './pages/SolPage';
 import FillManifestTable from './pages/FillManifestTable';
 import FillPhotosTable from "./pages/FillPhotosTable";
+import AddFirstPhotoDetailsToManifestTable from './pages/AddFirstPhotoDetailsToManifestTable';
 //styling
 import styles from './styling/styling.module.css';
 import './App.css';
@@ -15,7 +18,7 @@ function App() {
 
     //set up app routes
     return (
-        <Fragment>
+        <div className={styles.bodyStyles}>
             <Router>
                 <Routes>
                     <Route exact path="/intro" element={<IntroPage />} />
@@ -23,10 +26,11 @@ function App() {
                     <Route exact path="/sols/:sol" element={<SolPage />} />
                     <Route exact path="/fillManifest" element={<FillManifestTable />} />
                     <Route exact path="/fillPhotos" element={<FillPhotosTable />} />
+                    <Route exact path="/addToManifest" element={<AddFirstPhotoDetailsToManifestTable />} />
                     <Route path="/*" element={<Navigate to="/intro" />} />
                 </Routes>
             </Router>
-        </Fragment>
+        </div>
     );
 }
 

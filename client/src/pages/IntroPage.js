@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 //styling
 import styles from '../styling/styling.module.css';
 //components
-import Audio from '../components/Audio/Audio';
 import AppHeading from '../components/AppHeading/AppHeading';
 import MissionOverview from '../components/MissionOverview/MissionOverview';
 import IntroSlideshow from '../components/IntroSlideshow/IntroSlideshow';
@@ -132,7 +131,6 @@ const IntroPage = () => {
     //<IntroPage /> presentation
     return (
         <div className={styles.bodyStyles}>
-            <Audio />
             <AppHeading />
             <MissionOverview />
             <IntroSlideshow photoUrls={photoUrls} altTexts={altTexts} />

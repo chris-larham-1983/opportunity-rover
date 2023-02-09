@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 //styling
 import styles from '../styling/styling.module.css';
 //components
-import Audio from '../components/Audio/Audio';
 import AppHeading from '../components/AppHeading/AppHeading';
 import PageTraversal from "../components/PageTraversal/PageTraversal";
+import IntroPageReturn from "../components/IntroPageReturn/IntroPageReturn";
 import CameraAbbreviations from "../components/CameraAbbreviations/CameraAbbreviations";
 import SolLink from '../components/SolLink/SolLink';
 
@@ -15,9 +15,6 @@ const SolSelectPage = () => {
     //variables to store/set all the manifest details
     const [manifestDetails, setManifestDetails] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
-
-    //variable to ensure 'getManifestDetails' is requested only once
-    const manifestRequests = useRef(0);
 
     //function to obtain manifest details
     const getManifestDetails = async () => {
@@ -34,20 +31,16 @@ const SolSelectPage = () => {
 
     //page load logic
     useEffect(() => {
-        //get the manifest details if they have not already been requested
-        if(manifestRequests.current === 0) {
-            getManifestDetails().then(manifestDetails => setManifestDetails(manifestDetails));
-            manifestRequests.current += 1;
-        }
+        getManifestDetails().then(manifestDetails => setManifestDetails(manifestDetails));
     }, []);
 
     //<SolSelectPage /> presentation
     return (
         <div className={styles.bodyStyles}>
-            <Audio />
             <AppHeading />
             <PageTraversal />
             <div className={styles.solLinkContainer}>
+                <IntroPageReturn />
                 <CameraAbbreviations />
                 {errorMessage && <p className={styles.negativeFeedback}>{errorMessage}</p> }
                 {manifestDetails && manifestDetails.map((manifestItem, index) => (

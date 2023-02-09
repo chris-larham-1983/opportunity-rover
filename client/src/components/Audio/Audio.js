@@ -10,7 +10,7 @@ import opportunity_music from '../../audio/mars_rover_music.mp3';
 
 const Audio = () => {
 
-    //page load logic
+    //component load logic
     useEffect(() => {
         //add a 'visibilitychange' event listener to the document that will invoke the 'hiddenOrShown()' function when fired
         document.addEventListener("visibilitychange", hiddenOrShown);
