@@ -94,7 +94,7 @@ const Audio = () => {
         }
     };
 
-    //function triggered when 'audioControls' is no longer hidden || the document has become 'visible' as a result of the 'visibilityChange' event || the 'pageshow' event fires
+    //function triggered when the app loads || the document has become 'visible' as a result of the 'visibilityChange' event || the 'pageshow' event fires
     const showProgress = () => {
         //if the variable 'playTime' - and, implicitly, the 'preferredVolume' and 'userWantsMusic' variables - DOES exist in localStorage...
         if(localStorage.getItem("playTime")) {
