@@ -7,19 +7,17 @@ import './sliders.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWandMagicSparkles, faHandPointRight } from '@fortawesome/free-solid-svg-icons';
 
-const ImageEditing = ({ responsiveDiv, marsSlide, marsUrl, previousBtn, nextBtn }) => {
+const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPercentageHeight, responsiveDiv, marsSlide, marsUrl, previousBtn, nextBtn }) => {
     /*
         component variables, setters, and default values
      */
     const [percentageWidth, setPercentageWidth] = useState(100);
-    const [percentageHeight, setPercentageHeight] = useState(75);
     const [blurValue, setBlurValue] = useState(0);
     const [brightnessValue, setBrightnessValue] = useState(100);
     const [contrastValue, setContrastValue] = useState(100);
     const [invertValue, setInvertValue] = useState(0);
     const [opacityValue, setOpacityValue] = useState(100);
     const [sepiaValue, setSepiaValue] = useState(0);
-    let availableHeight, availableWidth;
     /* ---------------------------------------------------------------------------------------------------------------
         logic to show/hide the image editing <div> and scroll it into view when clicked
      */

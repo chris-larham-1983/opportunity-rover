@@ -3,9 +3,15 @@ import React, { useEffect } from 'react';
 //styling
 import styles from '../../styling/styling.module.css';
 
-const SolSlideshow = ({ manualPrevious, manualNext, createLink, url, alt, departFullscreen, previousBtn, nextBtn, marsUrl, responsiveDiv, marsSlide }) => {
-    let availableHeight, availableWidth;
+const SolSlideshow = ({ setPercentageHeight, availableHeight, availableWidth, manualPrevious, manualNext, createLink, url, alt, previousBtn, nextBtn, marsUrl, responsiveDiv, marsSlide, slideIndex }) => {
 
+    const departFullscreen = () => {
+        //define the 'availableHeight' variable as equal to the viewport's height
+        availableHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        marsSlide.current.height = Math.round((availableHeight / 100) * 75);
+        setPercentageHeight(75);
+        responsiveDiv.current.scrollIntoView(false);
+    };
     //logic to render this component's image with a width of 100% and a height of 75% on first render
     useEffect(() => {
         //define the 'availableHeight' variable as equal to the viewport's height
@@ -25,7 +31,9 @@ const SolSlideshow = ({ manualPrevious, manualNext, createLink, url, alt, depart
         <div id={styles.imageCell} data-testid="imageCell">
             <button className={styles.previousButton} data-testid="previousButton" onClick={manualPrevious} ref={previousBtn}>&larr;</button>
             <button className={styles.nextButton} data-testid="nextButton" onClick={manualNext} ref={nextBtn}>&rarr;</button>
-            <div className={styles.martianUrl} data-testid="martianUrl" onClick={createLink} ref={marsUrl}>{url}</div>
+            <div className={styles.martianUrl} data-testid="martianUrl" onClick={createLink} ref={marsUrl}>
+                <a href={url} target='_blank'>{url}</a>
+            </div>
             <div id={styles.responsiveDiv} data-testid="responsiveDiv" ref={responsiveDiv}>
                 <img className={styles.mars2} data-testid="mars2" src={url} alt={alt} onClick={departFullscreen} ref={marsSlide} />
             </div>

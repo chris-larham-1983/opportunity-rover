@@ -6702,6 +6702,14 @@ button {
     width: 100%;
     border-radius: 3px;
 }
+a {
+    color: white;
+    transition: color 0.5s;
+}
+a:hover {
+    cursor: pointer;
+    color: salmon;
+}
 .controlsHeading {
     font-size: 32px;
     width: fit-content;
@@ -6710,6 +6718,7 @@ button {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
     padding: 5px;
     border-radius: 3px;
+    cursor: pointer;
 }
 .editingDiv {
     width: 100%;
@@ -6724,6 +6733,16 @@ button {
     font-size: 20px;
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
     line-height: 35px;
+    transition-property: background-color, border, border-radius, padding;
+    transition-duration: 0.25s;
+}
+.labelPara:hover {
+    cursor: pointer;
+    background-color: darksalmon;
+    border: 1px solid black;
+    border-radius: 3px;
+    height: 41px;
+    padding: 2px;
 }
 .sliderContainer {
     width: 100%;

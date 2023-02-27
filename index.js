@@ -27,6 +27,8 @@ if(process.env.NODE_ENV === 'production') {
 app.use("/manifest", require("./routes/manifest"));
 //photos route
 app.use("/photos", require("./routes/photos"));
+//utilities route
+app.use("/utilities", require("./routes/utilities"));
 
 //display pages correctly when the page is refreshed
 app.get('*', (request, response) => {
