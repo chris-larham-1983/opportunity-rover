@@ -186,6 +186,84 @@ describe("The <ImageEditing /> component", () => {
                     fireEvent.click(increaseContrast);
                     expect(contrastRange.getAttribute("value")).not.toBe("202");
                 });
+                it("enables the User to alter the martian image's color inversion, with the percentage color inversion effect displayed on the slider thumb", () => {
+                    const controlsHeading = screen.getByTestId("controlsHeading");
+                    fireEvent.click(controlsHeading);
+                    const invertEditor = screen.getByTestId("invertEditor");
+                    fireEvent.click(invertEditor);
+                    const decreaseInvert = screen.getByTestId("decreaseInvert");
+                    const increaseInvert = screen.getByTestId("increaseInvert");
+                    const invertRange = screen.getByTestId("invertRange");
+                    expect(invertRange.getAttribute("value")).toBe("0");
+                    fireEvent.input(invertRange, { target: { value: "100" }});
+                    expect(invertRange.getAttribute("value")).toBe("100");
+                    expect(invertRange.getAttribute("class")).toEqual("_100PerCent");
+                    for(let click = 1; click <= 101; click++) {
+                        fireEvent.click(decreaseInvert);
+                    }
+                    expect(invertRange.getAttribute("value")).toBe("0");
+                    expect(invertRange.getAttribute("class")).toEqual("_0PerCent");
+                    for(let click = 1; click <= 100; click++) {
+                        fireEvent.click(increaseInvert);
+                        expect(invertRange.getAttribute("value")).toBe(`${click}`);
+                        expect(invertRange.getAttribute("class")).toEqual(`_${click}PerCent`);
+                    }
+                    expect(invertRange.getAttribute("value")).toBe("100");
+                    fireEvent.click(increaseInvert);
+                    expect(invertRange.getAttribute("value")).not.toBe("101");
+                });
+                it("enables the User to alter the martian image's opacity, with the percentage opacity effect displayed on the slider thumb", () => {
+                    const controlsHeading = screen.getByTestId("controlsHeading");
+                    fireEvent.click(controlsHeading);
+                    const opacityEditor = screen.getByTestId("opacityEditor");
+                    fireEvent.click(opacityEditor);
+                    const decreaseOpacity = screen.getByTestId("decreaseOpacity");
+                    const increaseOpacity = screen.getByTestId("increaseOpacity");
+                    const opacityRange = screen.getByTestId("opacityRange");
+                    expect(opacityRange.getAttribute("value")).toBe("100");
+                    fireEvent.input(opacityRange, { target: { value: "98" }});
+                    expect(opacityRange.getAttribute("value")).toBe("98");
+                    expect(opacityRange.getAttribute("class")).toEqual("_98PerCent");
+                    for(let click = 1; click <= 101; click++) {
+                        fireEvent.click(decreaseOpacity);
+                    }
+                    expect(opacityRange.getAttribute("value")).toBe("0");
+                    expect(opacityRange.getAttribute("class")).toEqual("_0PerCent");
+                    for(let click = 1; click <= 100; click++) {
+                        fireEvent.click(increaseOpacity);
+                        expect(opacityRange.getAttribute("value")).toBe(`${click}`);
+                        expect(opacityRange.getAttribute("class")).toEqual(`_${click}PerCent`);
+                    }
+                    expect(opacityRange.getAttribute("value")).toBe("100");
+                    fireEvent.click(increaseOpacity);
+                    expect(opacityRange.getAttribute("value")).not.toBe("101");
+                });
+                it("enables the User to alter the martian image's sepia effect, with the percentage sepia effect displayed on the slider thumb", () => {
+                    const controlsHeading = screen.getByTestId("controlsHeading");
+                    fireEvent.click(controlsHeading);
+                    const sepiaEditor = screen.getByTestId("sepiaEditor");
+                    fireEvent.click(sepiaEditor);
+                    const decreaseSepia = screen.getByTestId("decreaseSepia");
+                    const increaseSepia = screen.getByTestId("increaseSepia");
+                    const sepiaRange = screen.getByTestId("sepiaRange");
+                    expect(sepiaRange.getAttribute("value")).toBe("0");
+                    fireEvent.input(sepiaRange, { target: { value: "100" }});
+                    expect(sepiaRange.getAttribute("value")).toBe("100");
+                    expect(sepiaRange.getAttribute("class")).toEqual("_100PerCent");
+                    for(let click = 1; click <= 101; click++) {
+                        fireEvent.click(decreaseSepia);
+                    }
+                    expect(sepiaRange.getAttribute("value")).toBe("0");
+                    expect(sepiaRange.getAttribute("class")).toEqual("_0PerCent");
+                    for(let click = 1; click <= 100; click++) {
+                        fireEvent.click(increaseSepia);
+                        expect(sepiaRange.getAttribute("value")).toBe(`${click}`);
+                        expect(sepiaRange.getAttribute("class")).toEqual(`_${click}PerCent`);
+                    }
+                    expect(sepiaRange.getAttribute("value")).toBe("100");
+                    fireEvent.click(increaseSepia);
+                    expect(sepiaRange.getAttribute("value")).not.toBe("101");
+                });
             });
         });
     });
