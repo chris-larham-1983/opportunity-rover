@@ -386,40 +386,43 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
         if(sepiaSlider.current) {
             sepiaSlider.current.setAttribute("class", `_${sepiaValue}PerCent`);
         }
-        //set the width of 'responsiveDiv' to {percentageWidth}%
-        responsiveDiv.current.style.width = percentageWidth + "%";
-        //set the left margin...
-        responsiveDiv.current.style.marginLeft = "auto";
-        //...and the right margin such that 'responsiveDiv' is centred
-        responsiveDiv.current.style.marginRight = "auto";
-        //set the 'height' attribute of the image equal to the rounded result of ((availableHeight/100) * percentageHeight) in order to avoid height increasing/decreasing proportionate to width
-        marsSlide.current.height = Math.round((availableHeight / 100) * percentageHeight);
-        //add the desired blur, brightness, contrast, color inversion, opacity, and sepia effects
-        marsSlide.current.style.filter = `blur(${blurValue}px) brightness(${brightnessValue}%) contrast(${contrastValue}%) invert(${invertValue}%) opacity(${opacityValue}%) sepia(${sepiaValue}%)`;
-        marsSlide.current.style.WebkitFilter = `blur(${blurValue}px) brightness(${brightnessValue}%) contrast(${contrastValue}%) invert(${invertValue}%) opacity(${opacityValue}%) sepia(${sepiaValue}%)`;
-        //ensure the martian url remains visible by setting its 'z-index' property to '1'
-        marsUrl.current.style.zIndex = "1";
-        //ensure the 'previousBtn' remains visible by setting its 'z-index' property to '1'
-        previousBtn.current.style.zIndex = "1";
-        //ensure the 'nextBtn' remains visible by setting its 'z-index' property to '1'
-        nextBtn.current.style.zIndex = "1";
+        //if-clause put in to allow testing of the <ImageEditing /> component
+        if(responsiveDiv) {
+            //set the width of 'responsiveDiv' to {percentageWidth}%
+            responsiveDiv.current.style.width = percentageWidth + "%";
+            //set the left margin...
+            responsiveDiv.current.style.marginLeft = "auto";
+            //...and the right margin such that 'responsiveDiv' is centred
+            responsiveDiv.current.style.marginRight = "auto";
+            //set the 'height' attribute of the image equal to the rounded result of ((availableHeight/100) * percentageHeight) in order to avoid height increasing/decreasing proportionate to width
+            marsSlide.current.height = Math.round((availableHeight / 100) * percentageHeight);
+            //add the desired blur, brightness, contrast, color inversion, opacity, and sepia effects
+            marsSlide.current.style.filter = `blur(${blurValue}px) brightness(${brightnessValue}%) contrast(${contrastValue}%) invert(${invertValue}%) opacity(${opacityValue}%) sepia(${sepiaValue}%)`;
+            marsSlide.current.style.WebkitFilter = `blur(${blurValue}px) brightness(${brightnessValue}%) contrast(${contrastValue}%) invert(${invertValue}%) opacity(${opacityValue}%) sepia(${sepiaValue}%)`;
+            //ensure the martian url remains visible by setting its 'z-index' property to '1'
+            marsUrl.current.style.zIndex = "1";
+            //ensure the 'previousBtn' remains visible by setting its 'z-index' property to '1'
+            previousBtn.current.style.zIndex = "1";
+            //ensure the 'nextBtn' remains visible by setting its 'z-index' property to '1'
+            nextBtn.current.style.zIndex = "1";
+        }
     }, [percentageWidth, percentageHeight, blurValue, brightnessValue, contrastValue, invertValue, opacityValue, sepiaValue]);
 
     return (
-        <div className={styles.marsTableCell}>
-            <h2 className={styles.controlsHeading} onClick={toggleEditingDiv}>
+        <div className={styles.marsTableCell} data-testid="marsTableCell">
+            <h2 className={styles.controlsHeading} onClick={toggleEditingDiv} data-testid="controlsHeading">
                 <FontAwesomeIcon icon={ faHandPointRight } /> <FontAwesomeIcon icon={ faWandMagicSparkles } /> Image Editing Controls +/- [Default Values in Brackets] <FontAwesomeIcon icon={ faWandMagicSparkles } />
             </h2>
             {showEditingDiv &&
-                <div className={styles.editingDiv} ref={editingDiv}>
-                    <p className={styles.labelPara} onClick={toggleWidthDiv}>
+                <div className={styles.editingDiv} ref={editingDiv} data-testid="editingDiv">
+                    <p className={styles.labelPara} onClick={toggleWidthDiv} data-testid="widthEditor">
                         <label htmlFor="widthRange">
                             <span className={styles.spanStylesKhaki}>&larr;</span> Width +/- <span className={styles.spanStylesKhaki}>[100%]</span> <span className={styles.spanStylesKhaki}>&rarr;</span>
                         </label>
                     </p>
                     {showWidthDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseWidth}>-</button>
+                            <button className={styles.decrease} onClick={decreaseWidth} data-testid="decreaseWidth">-</button>
                             <input id={styles.widthRange}
                                    ref={widthSlider}
                                    type="range"
@@ -427,17 +430,18 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    max="100"
                                    value={percentageWidth}
                                    onInput={(e) => updateWidth(e)}
-                                   className={`_${percentageWidth}PerCent`} />
-                            <button className={styles.increase} onClick={increaseWidth}>+</button>
+                                   className={`_${percentageWidth}PerCent`}
+                                   data-testid="widthRange" />
+                            <button className={styles.increase} onClick={increaseWidth} data-testid="increaseWidth">+</button>
                         </div>}
-                    <p className={styles.labelPara} onClick={toggleHeightDiv}>
+                    <p className={styles.labelPara} onClick={toggleHeightDiv} data-testid="heightEditor">
                         <label htmlFor="heightRange">
                             <span className={styles.spanStylesKhaki}>&uarr;</span> Height +/- <span className={styles.spanStylesKhaki}>[75%]</span> <span className={styles.spanStylesKhaki}>&darr;</span>
                         </label>
                     </p>
                     {showHeightDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseHeight}>-</button>
+                            <button className={styles.decrease} onClick={decreaseHeight} data-testid="decreaseHeight">-</button>
                             <input id={styles.heightRange}
                                    ref={heightSlider}
                                    type="range"
@@ -445,17 +449,18 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    max="100"
                                    value={percentageHeight}
                                    onInput={(e) => updateHeight(e)}
-                                   className={`_${percentageHeight}PerCent`} />
-                            <button className={styles.increase} onClick={increaseHeight}>+</button>
+                                   className={`_${percentageHeight}PerCent`}
+                                   data-testid="heightRange" />
+                            <button className={styles.increase} onClick={increaseHeight} data-testid="increaseHeight">+</button>
                         </div>}
-                    <p className={styles.labelPara} onClick={toggleBlurDiv}>
+                    <p className={styles.labelPara} onClick={toggleBlurDiv} data-testid="blurEditor">
                         <label htmlFor="blurRange">
                             <span className={styles.blur1}> Blur +/-</span> <span className={styles.spanStylesKhaki}>[0px]</span>
                         </label>
                     </p>
                     {showBlurDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseBlur}>-</button>
+                            <button className={styles.decrease} onClick={decreaseBlur} data-testid="decreaseBlur">-</button>
                             <input id={styles.blurRange}
                                    ref={blurSlider}
                                    type="range"
@@ -463,17 +468,18 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    max="100"
                                    value={blurValue}
                                    onInput={(e) => updateBlur(e)}
-                                   className={`_${blurValue}Pixel`} />
-                            <button className={styles.increase} onClick={increaseBlur}>+</button>
+                                   className={`_${blurValue}Pixel`}
+                                   data-testid="blurRange" />
+                            <button className={styles.increase} onClick={increaseBlur} data-testid="increaseBlur">+</button>
                         </div>}
-                    <p className={styles.labelPara} onClick={toggleBrightnessDiv}>
+                    <p className={styles.labelPara} onClick={toggleBrightnessDiv} data-testid="brightnessEditor">
                         <label htmlFor="brightnessRange">
                             <span className={styles.brightness200}>Bright</span><span className={styles.brightness50}>ness</span> +/- <span className={styles.spanStylesKhaki}>[100%]</span>
                         </label>
                     </p>
                     {showBrightnessDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseBrightness}>-</button>
+                            <button className={styles.decrease} onClick={decreaseBrightness} data-testid="decreaseBrightness">-</button>
                             <input id={styles.brightnessRange}
                                    ref={brightnessSlider}
                                    type="range"
@@ -482,17 +488,18 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    step="10"
                                    value={brightnessValue}
                                    onInput={(e) => updateBrightness(e)}
-                                   className={`_${brightnessValue}PerCent`} />
-                            <button className={styles.increase} onClick={increaseBrightness}>+</button>
+                                   className={`_${brightnessValue}PerCent`}
+                                   data-testid="brightnessRange" />
+                            <button className={styles.increase} onClick={increaseBrightness} data-testid="increaseBrightness">+</button>
                         </div>}
-                    <p className={styles.labelPara} onClick={toggleContrastDiv}>
+                    <p className={styles.labelPara} onClick={toggleContrastDiv} data-testid="contrastEditor">
                         <label htmlFor="contrastRange">
                             <span className={styles.contrast50}>Con</span><span className={styles.contrast150}>trast</span> +/- <span className={styles.spanStylesKhaki}>[100%]</span>
                         </label>
                     </p>
                     {showContrastDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseContrast}>-</button>
+                            <button className={styles.decrease} onClick={decreaseContrast} data-testid="decreaseContrast">-</button>
                             <input id={styles.contrastRange}
                                    ref={contrastSlider}
                                    type="range"
@@ -501,17 +508,18 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    step="2"
                                    value={contrastValue}
                                    onInput={(e) => updateContrast(e)}
-                                   className={`_${contrastValue}PerCent`} />
-                            <button className={styles.increase} onClick={increaseContrast}>+</button>
+                                   className={`_${contrastValue}PerCent`}
+                                   data-testid="contrastRange" />
+                            <button className={styles.increase} onClick={increaseContrast} data-testid="increaseContrast">+</button>
                         </div>}
-                    <p className={styles.labelPara} onClick={toggleInvertDiv}>
+                    <p className={styles.labelPara} onClick={toggleInvertDiv} data-testid="invertEditor">
                         <label htmlFor="invertRange">
                             <span className={styles.invert100}>Invert +/-</span> <span className={styles.spanStylesKhaki}>[0%]</span>
                         </label>
                     </p>
                     {showInvertDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseInvert}>-</button>
+                            <button className={styles.decrease} onClick={decreaseInvert} data-testid="decreaseInvert">-</button>
                             <input id={styles.invertRange}
                                    ref={invertSlider}
                                    type="range"
@@ -519,17 +527,18 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    max="100"
                                    value={invertValue}
                                    onInput={(e) => updateInvert(e)}
-                                   className={`_${invertValue}PerCent`} />
-                            <button className={styles.increase} onClick={increaseInvert}>+</button>
+                                   className={`_${invertValue}PerCent`}
+                                   data-testid="invertRange" />
+                            <button className={styles.increase} onClick={increaseInvert} data-testid="increaseInvert">+</button>
                         </div>}
-                    <p className={styles.labelPara} onClick={toggleOpacityDiv}>
+                    <p className={styles.labelPara} onClick={toggleOpacityDiv} data-testid="opacityEditor">
                         <label htmlFor="opacityRange">
                             <span className={styles.opacity60}>Opacity +/-</span> <span className={styles.spanStylesKhaki}>[100%]</span>
                         </label>
                     </p>
                     {showOpacityDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseOpacity}>-</button>
+                            <button className={styles.decrease} onClick={decreaseOpacity} data-testid="decreaseOpacity">-</button>
                             <input id={styles.opacityRange}
                                    ref={opacitySlider}
                                    type="range"
@@ -537,17 +546,18 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    max="100"
                                    value={opacityValue}
                                    onInput={(e) => updateOpacity(e)}
-                                   className={`_${opacityValue}PerCent`} />
-                            <button className={styles.increase} onClick={increaseOpacity}>+</button>
+                                   className={`_${opacityValue}PerCent`}
+                                   data-testid="opacityRange" />
+                            <button className={styles.increase} onClick={increaseOpacity} data-testid="increaseOpacity">+</button>
                         </div>}
-                    <p className={styles.labelPara} onClick={toggleSepiaDiv}>
+                    <p className={styles.labelPara} onClick={toggleSepiaDiv} data-testid="sepiaEditor">
                         <label htmlFor="sepiaRange">
                             <span className={styles.sepia100}>Sepia +/-</span> <span className={styles.spanStylesKhaki}>[0%]</span>
                         </label>
                     </p>
                     {showSepiaDiv &&
                         <div className={styles.sliderContainer}>
-                            <button className={styles.decrease} onClick={decreaseSepia}>-</button>
+                            <button className={styles.decrease} onClick={decreaseSepia} data-testid="decreaseSepia">-</button>
                             <input id={styles.sepiaRange}
                                    ref={sepiaSlider}
                                    type="range"
@@ -555,8 +565,9 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
                                    max="100"
                                    value={sepiaValue}
                                    onInput={(e) => updateSepia(e)}
-                                   className={`_${sepiaValue}PerCent`} />
-                            <button className={styles.increase} onClick={increaseSepia}>+</button>
+                                   className={`_${sepiaValue}PerCent`}
+                                   data-testid="sepiaRange" />
+                            <button className={styles.increase} onClick={increaseSepia} data-testid="increaseSepia">+</button>
                         </div>
                         }
                 </div>}
