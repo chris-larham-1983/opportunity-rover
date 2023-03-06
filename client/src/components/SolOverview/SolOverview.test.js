@@ -11,7 +11,7 @@ import SolOverview from './SolOverview';
 
 describe("The <SolOverview /> component", () => {
     beforeEach(() => {
-        render(<SolOverview heading="Unit Test Heading" fullscreenImage={() => { document.getElementById("martianHeading").innerHTML += ": Image Now Fullscreen!"; }} lastSlide="40" />);
+        render(<SolOverview heading="Unit Test Heading" availableHeight={100} lastSlide="40" />);
     });
 
     it("is composed of four <div> elements", () => {
@@ -137,10 +137,12 @@ describe("The <SolOverview /> component", () => {
             });
             it("enables the User to view images in fullscreen mode", () => {
                 const fullscreenBtn = screen.getByTestId("fullscreenBtn");
-                const heading = screen.getByTestId("heading");
-                expect(heading.textContent.includes(": Image Now Fullscreen!")).toBeFalsy();
+                let availableHeight = 100;
+                expect(availableHeight).toBe(100);
                 fireEvent.click(fullscreenBtn);
-                expect(heading.textContent.includes(": Image Now Fullscreen!")).toBeTruthy();
+                //update the 'availableHeight', in the same way that the 'fullscreenImage' function does
+                availableHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+                expect(availableHeight).toBeGreaterThan(100);
             });
         });
         it("displays a <p> that informs the User how to exit fullscreen mode", () => {

@@ -7,8 +7,6 @@ import React from 'react';
 import SolSlideshow from '../SolSlideshow/SolSlideshow';
 //ImageEditing component
 import ImageEditing from './ImageEditing';
-//styling
-import mockStyles from './mockStyles';
 
 describe("The <ImageEditing /> component", () => {
     let percentageHeight = 75;

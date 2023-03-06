@@ -13,6 +13,7 @@ import SolSlideshow from '../components/SolSlideshow/SolSlideshow';
 import ImageEditing from '../components/ImageEditing/ImageEditing';
 //reusable functions
 import getEarthDate from '../reusable_functions/getEarthDate';
+import getSolCameras from '../reusable_functions/getSolCameras';
 import getSolPhotos from '../reusable_functions/getSolPhotos';
 
 const SolPage = () => {
@@ -20,6 +21,7 @@ const SolPage = () => {
     const { sol } = useParams();
     const [earthDate, setEarthDate] = useState(null);
     const [solPhotos, setSolPhotos] = useState(null);
+    const [solCameras, setSolCameras] = useState(null);
     const [slideNumber, setSlideNumber] = useState(1);
     const [slideIndex, setSlideIndex] = useState(0);
     const [percentageHeight, setPercentageHeight] = useState(75);
@@ -35,7 +37,8 @@ const SolPage = () => {
     useEffect(() => {
         getEarthDate(sol).then(earthDate => setEarthDate(earthDate));
         getSolPhotos(sol).then(solPhotos => setSolPhotos(solPhotos));
-    }, [earthDate]);
+        getSolCameras(sol).then(solCameras => setSolCameras(solCameras));
+    }, [earthDate, solPhotos]);
 
     //triggered when the User clicks the 'NEXT' button
     const manualNext  = () => {
@@ -91,11 +94,11 @@ const SolPage = () => {
 
     return (
         <div className={styles.bodyStyles}>
-            {earthDate && solPhotos &&
+            {earthDate && solPhotos && solCameras &&
                 <Fragment>
                     <SolOverview availableHeight={availableHeight} setPercentageHeight={setPercentageHeight} responsiveDiv={responsiveDiv} marsSlide={marsSlide} heading={`<em>Opportunity</em> Martian Sol ${sol} <em>[Earth Date ${earthDate}]</em>`} lastSlide={solPhotos.length} slideInput={slideInput} setSlideIndex={setSlideIndex} slideNumber={slideNumber} setSlideNumber={setSlideNumber} />
                     <SolHeading heading={`Slide ${slideNumber}/${solPhotos.length}: ${solPhotos[slideIndex].figcaption}`} />
-                    <SolSlideshow setPercentageHeight={setPercentageHeight} availableHeight={availableHeight} availableWidth={availableWidth} previousBtn={previousBtn} nextBtn={nextBtn} marsUrl={marsUrl} marsSlide={marsSlide} responsiveDiv={responsiveDiv} url={solPhotos[slideIndex].url} alt={solPhotos[slideIndex].alt} createLink={() => {}} manualNext={manualNext} manualPrevious={manualPrevious} />
+                    <SolSlideshow setPercentageHeight={setPercentageHeight} availableHeight={availableHeight} availableWidth={availableWidth} previousBtn={previousBtn} nextBtn={nextBtn} marsUrl={marsUrl} marsSlide={marsSlide} responsiveDiv={responsiveDiv} url={solPhotos[slideIndex].url} alt={solPhotos[slideIndex].alt} manualNext={manualNext} manualPrevious={manualPrevious} />
                     <ImageEditing availableHeight={availableHeight} availableWidth={availableWidth} percentageHeight={percentageHeight} setPercentageHeight={setPercentageHeight} responsiveDiv={responsiveDiv} marsUrl={marsUrl} marsSlide={marsSlide} nextBtn={nextBtn} previousBtn={previousBtn} />
                 </Fragment>
             }

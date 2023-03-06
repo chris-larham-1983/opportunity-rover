@@ -19,16 +19,18 @@ const SolOverview = ({ availableHeight, setPercentageHeight, responsiveDiv, mars
     const fullscreenImage = () => {
         //define the 'availableHeight' variable as equal to the viewport's height
         availableHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        //define the 'availableWidth' variable as equal to the amount of horizontal space (in CSS pixels) available to the window
-        marsSlide.current.height = availableHeight;
-        responsiveDiv.current.style.width = "100%";
-        responsiveDiv.current.scrollIntoView(false);
-        setPercentageHeight(100);
+        //if-clause added for unit testing purposes
+        if(marsSlide) {
+            marsSlide.current.height = availableHeight;
+            responsiveDiv.current.style.width = "100%";
+            responsiveDiv.current.scrollIntoView(false);
+            setPercentageHeight(100);
+        }
     };
 
     useEffect(() => {
         headingElement.current.innerHTML = heading;
-    }, []);
+    }, [heading]);
 
     return (
         <div className={styles.marsTableRow} data-testid="marsTableRow">

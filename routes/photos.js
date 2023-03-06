@@ -32,15 +32,15 @@ router.get('/:sol/getAllPhotos', async (req, res) => {
 //get all photos for the specified sol, filtered by the chosen cameras
 router.get('/:sol/filterByCameras/:cameras', async (req, res) => {
     const { sol } = req.params;
-    //a 'cameras' string is included in the route (:cameras) like this: Front_Hazard_Avoidance_Camera-Rear_Hazard_Avoidance_Camera-Entry,_Descent,_and_Landing_Camera
+    //a 'cameras' string is included in the route (:cameras) like this: Front_Hazard_Avoidance_Camera*Rear_Hazard_Avoidance_Camera*Entry,_Descent,_and_Landing_Camera
     let { cameras } = req.params;
-    //the string is split on the dash...
-    cameras = cameras.split("-");
+    //the string is split on the asterisk...
+    cameras = cameras.split("*");
     //the resultant elements have their underscores replaced with spaces...
     for(let index = 0; index < cameras.length; index++) {
         cameras[index] = cameras[index].replace(/_/g, " ");
     };
-    //and then the string is joined into an array, using a comma to delimit the elements
+    //and then the array is joined into a string, using a comma to delimit the elements
     cameras.join(",");
     try {
         //get all photos for the specified sol, filtered by the chosen cameras

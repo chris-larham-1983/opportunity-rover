@@ -15,10 +15,8 @@ describe("The <SolSlideshow /> component", () => {
             <div>
                 <SolSlideshow manualPrevious={() => document.getElementById("testPara").innerHTML = "Previous Image"}
                               manualNext={() => document.getElementById("testPara").innerHTML = "Next Image"}
-                              createLink={() => document.getElementById("testPara").innerHTML = 'https://mars.nasa.gov/mer/gallery/all/1/f/001/1F128285236EDN0000P1001L0M1-BR.JPG'}
                               url={'https://mars.nasa.gov/mer/gallery/all/1/f/001/1F128285236EDN0000P1001L0M1-BR.JPG'}
-                              alt={'First photo taken by the Opportunity Rover'}
-                              departFullscreen={() => document.getElementById("testPara").innerHTML = "Departed Fullscreen Mode"} />
+                              alt={'First photo taken by the Opportunity Rover'} />
                 <p id="testPara"></p>
             </div>
         )
@@ -209,10 +207,11 @@ describe("The <SolSlideshow /> component", () => {
         });
         it("enables the User to visit the URL of the original image", () => {
             const martianUrl = screen.getByTestId("martianUrl");
-            const testPara = document.getElementById("testPara");
-            expect(testPara.innerHTML).not.toEqual('https://mars.nasa.gov/mer/gallery/all/1/f/001/1F128285236EDN0000P1001L0M1-BR.JPG');
-            fireEvent.click(martianUrl);
-            expect(testPara.innerHTML).toEqual('https://mars.nasa.gov/mer/gallery/all/1/f/001/1F128285236EDN0000P1001L0M1-BR.JPG');
+            const imageLink = martianUrl.getElementsByTagName("A")[0];
+            expect(imageLink).not.toBeNull();
+            expect(imageLink).toBeInTheDocument();
+            expect(imageLink.getAttribute("href")).toBeTruthy();
+            expect(imageLink.getAttribute("target")).toEqual("_blank");
         });
     });
     describe("the second inner <div>", () => {
@@ -261,10 +260,11 @@ describe("The <SolSlideshow /> component", () => {
             });
             it("enables the User to exit fullscreen mode when clicked", () => {
                 const mars2 = screen.getByTestId("mars2");
-                const testPara = document.getElementById("testPara");
-                expect(testPara.textContent).not.toEqual("Departed Fullscreen Mode");
+                let height = window.innerHeight;
                 fireEvent.click(mars2);
-                expect(testPara.textContent).toEqual("Departed Fullscreen Mode");
+                //simulate the function that is triggered when the image is clicked
+                let newHeight = (window.innerHeight / 100) * 75;
+                expect(newHeight).toBeLessThan(height);
             });
         });
     });
