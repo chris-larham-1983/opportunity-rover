@@ -22,8 +22,10 @@ router.get('/getAllCameras/:sol', async (req, res) => {
     try {
         //get the cameras that took photos on a given sol
         const cameras = await pool.query('SELECT cameras FROM manifest WHERE sol = $1', [sol]);
-        //return the string representation of the cameras that took photos on the given sol
-        return res.status(200).json(cameras.rows[0].cameras);
+        //return an array of the cameras that took photos on the given sol
+        return res.status(200).json({
+            cameras: cameras.rows[0].cameras.split(", ")
+        });
     } catch(err) {
         res.status(500).json(`${err.message}`);
     }

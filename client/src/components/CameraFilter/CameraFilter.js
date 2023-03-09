@@ -1,11 +1,17 @@
 //React setup
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 //styling
 import styles from '../../styling/styling.module.css';
+//Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCamera, faCameraRetro, faHandPointRight, faWandMagicSparkles} from '@fortawesome/free-solid-svg-icons';
 
-const CameraFilter = ({ sol, cameras, setSolPhotos }) => {
+const CameraFilter = ({ sol, cameras, setSolPhotos, setSlideIndex, setSlideNumber }) => {
 
+    //camera-filtering variable
     let requestParameter = "";
+
+    //function that responds to the user clicking the 'FILTER BY CAMERAS' <button>
     const handleSubmit = async (e) => {
         //prevent default form behaviour
         e.preventDefault();
@@ -43,10 +49,12 @@ const CameraFilter = ({ sol, cameras, setSolPhotos }) => {
         //update the solPhotos only if at least one camera has been selected
         if(requestParameter.length) {
             try {
-                const updateSolPhotos = await fetch(`photos/${sol}/filterByCameras/${requestParameter}`, {
+                const updateSolPhotos = await fetch(`/photos/${sol}/filterByCameras/${requestParameter}`, {
                     method: 'GET'
                 });
                 const updatedSolPhotos = await updateSolPhotos.json();
+                await setSlideIndex(0);
+                await setSlideNumber(1);
                 setSolPhotos(updatedSolPhotos);
             } catch(err) {
                 console.log(`${err.message}`);
@@ -61,6 +69,18 @@ const CameraFilter = ({ sol, cameras, setSolPhotos }) => {
     const [pancamIsChecked, setPancamIsChecked] = useState(false);
     const [minitesIsChecked, setMinitesIsChecked] = useState(false);
     const [entryIsChecked, setEntryIsChecked] = useState(false);
+
+    const camerasDiv = useRef(null);
+    let camerasDivTimer;
+    const toggleCamerasFilter = () => {
+        let showCameraDiv = !showCameras;
+        setShowCameras(showCameraDiv);
+        if(showCameraDiv) {
+            camerasDivTimer = setTimeout(() => {
+                camerasDiv.current.scrollIntoView(false);
+            }, 125);
+        }
+    };
 
     const updateCameras = (e) => {
         switch(e.target.name) {
@@ -86,51 +106,58 @@ const CameraFilter = ({ sol, cameras, setSolPhotos }) => {
     };
 
     return (
-        <div className={styles.marsTableCell}>
-            <h2>Filter By Camera</h2>
-            <form onSubmit={handleSubmit}>
-                {cameras.map((camera, index) => {
-                    switch(camera) {
-                        case 'FHAZ':
-                            return (
-                                <label key={index} htmlFor="FHAZ">FHAZ
-                                    <input type="checkbox" id="FHAZ" name="FHAZ" value="FHAZ" checked={fhazIsChecked} onChange={e => updateCameras(e)}/>
-                                </label>
-                            );
-                        case 'RHAZ':
-                            return (
-                                <label key={index} htmlFor="RHAZ">RHAZ
-                                    <input type="checkbox" id="RHAZ" name="RHAZ" value="RHAZ" checked={rhazIsChecked} onChange={e => updateCameras(e)}/>
-                                </label>
-                            );
-                        case 'NAVCAM':
-                            return (
-                                <label key={index} htmlFor="NAVCAM">NAVCAM
-                                    <input type="checkbox" id="NAVCAM" name="NAVCAM" value="NAVCAM" checked={navcamIsChecked} onChange={e => updateCameras(e)}/>
-                                </label>
-                            );
-                        case 'PANCAM':
-                            return (
-                                <label key={index} htmlFor="PANCAM">PANCAM
-                                    <input type="checkbox" id="PANCAM" name="PANCAM" value="PANCAM" checked={pancamIsChecked} onChange={e => updateCameras(e)}/>
-                                </label>
-                            );
-                        case 'MINITES':
-                            return (
-                                <label key={index} htmlFor="MINITES">MINITES
-                                    <input type="checkbox" id="MINITES" name="MINITES" value="MINITES" checked={minitesIsChecked} onChange={e => updateCameras(e)}/>
-                                </label>
-                            );
-                        case 'ENTRY':
-                            return (
-                                <label key={index} htmlFor="ENTRY">ENTRY
-                                    <input type="checkbox" id="ENTRY" name="ENTRY" value="ENTRY" checked={entryIsChecked} onChange={e => updateCameras(e)}/>
-                                </label>
-                            );
-                    }
-                })}
-                <input type="submit" value="FILTER BY CAMERA" />
-            </form>
+        <div className={styles.marsTableCell} data-testid="marsTableCell">
+            <h2 className={styles.camerasHeading} onClick={toggleCamerasFilter} data-testid="camerasHeading">
+                <FontAwesomeIcon icon={ faHandPointRight } /> <FontAwesomeIcon icon={ faCamera } /> Filter By Camera +/- <FontAwesomeIcon icon={ faCameraRetro } />
+            </h2>
+            {showCameras &&
+                <div className={styles.camerasFilter} ref={camerasDiv} data-testid="camerasDiv">
+                    <form onSubmit={handleSubmit} data-testid="camerasForm">
+                        {cameras.map((camera, index) => {
+                            switch(camera) {
+                                case 'FHAZ':
+                                    return (
+                                        <label className={styles.camerasLabel} key={index} htmlFor="FHAZ" data-testid="label">FHAZ
+                                            <input className={styles.camerasCheckbox} type="checkbox" id="FHAZ" name="FHAZ" value="FHAZ" checked={fhazIsChecked} onChange={e => updateCameras(e)} data-testid="FHAZ" />
+                                        </label>
+                                    );
+                                case 'RHAZ':
+                                    return (
+                                        <label className={styles.camerasLabel} key={index} htmlFor="RHAZ">RHAZ
+                                            <input className={styles.camerasCheckbox} type="checkbox" id="RHAZ" name="RHAZ" value="RHAZ" checked={rhazIsChecked} onChange={e => updateCameras(e)} data-testid="RHAZ" />
+                                        </label>
+                                    );
+                                case 'NAVCAM':
+                                    return (
+                                        <label className={styles.camerasLabel} key={index} htmlFor="NAVCAM">NAVCAM
+                                            <input className={styles.camerasCheckbox} type="checkbox" id="NAVCAM" name="NAVCAM" value="NAVCAM" checked={navcamIsChecked} onChange={e => updateCameras(e)} data-testid="NAVCAM" />
+                                        </label>
+                                    );
+                                case 'PANCAM':
+                                    return (
+                                        <label className={styles.camerasLabel} key={index} htmlFor="PANCAM">PANCAM
+                                            <input className={styles.camerasCheckbox} type="checkbox" id="PANCAM" name="PANCAM" value="PANCAM" checked={pancamIsChecked} onChange={e => updateCameras(e)} data-testid="PANCAM" />
+                                        </label>
+                                    );
+                                case 'MINITES':
+                                    return (
+                                        <label className={styles.camerasLabel} key={index} htmlFor="MINITES">MINITES
+                                            <input className={styles.camerasCheckbox} type="checkbox" id="MINITES" name="MINITES" value="MINITES" checked={minitesIsChecked} onChange={e => updateCameras(e)} data-testid="MINITES" />
+                                        </label>
+                                    );
+                                case 'ENTRY':
+                                    return (
+                                        <label className={styles.camerasLabel} key={index} htmlFor="ENTRY">ENTRY
+                                            <input className={styles.camerasCheckbox} type="checkbox" id="ENTRY" name="ENTRY" value="ENTRY" checked={entryIsChecked} onChange={e => updateCameras(e)} data-testid="ENTRY" />
+                                        </label>
+                                    );
+                            }
+                        })}
+                        {showCameras &&
+                            <input className={styles.camerasFilterInput} type="submit" value="FILTER BY CAMERA" data-testid="submitButton" />}
+                    </form>
+                </div>
+            }
         </div>
     )
 };

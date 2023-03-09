@@ -6701,6 +6701,7 @@ button {
 #responsiveDiv {
     width: 100%;
     border-radius: 3px;
+    min-height: 300px;
 }
 a {
     color: white;
@@ -6710,7 +6711,7 @@ a:hover {
     cursor: pointer;
     color: salmon;
 }
-.controlsHeading {
+.controlsHeading, .camerasHeading {
     font-size: 32px;
     width: fit-content;
     background-color: coral;
@@ -6756,6 +6757,53 @@ a:hover {
 #widthRange, #heightRange, #blurRange, #brightnessRange, #contrastRange, #invertRange, #opacityRange, #sepiaRange {
     width: 80%;
 }
+.camerasFilter {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    background-color: coral;
+    height: fit-content;
+    width: 99%;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.camerasFilterForm {
+    text-align: center;
+}
+.camerasLabel {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 0 10px;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+.camerasCheckbox {
+    height: 24px;
+    width: 24px;
+    margin-left: 10px;
+}
+.camerasFilterInput {
+    font-size: 24px;
+    width: 99%;
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+    color: black;
+    background-color: lightgrey;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.camerasFilterInput:hover {
+    background-color: darkslateblue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px double black;
+}
 
 /* Attempt at using media queries to provide a responsive design across mobile devices, tablets, laptops, and desktops: */
 
@@ -6774,7 +6822,7 @@ a:hover {
     .fullscreenBtn {height: 60px; font-size: 16px;}
     .martianHeading {font-size: 30px;}
     .martianUrl {font-size: 14px;}
-    .controlsHeading {font-size: 26px; letter-spacing: 1px;}
+    .controlsHeading, .camerasHeading {font-size: 26px; letter-spacing: 1px;}
     .timingInfo {font-size: 20px;}
     .slideSelect {font-size: 20px;}
     .slideInput {height: 40px; font-size:18px;}
@@ -6799,7 +6847,7 @@ a:hover {
     .martianHeading {font-size: 32px;}
     .slideSelect {font-size: 22px;}
     .martianUrl {font-size: 16px;}
-    .controlsHeading {font-size: 28px; letter-spacing: 1px;}
+    .controlsHeading, .camerasHeading {font-size: 28px; letter-spacing: 1px;}
     .timingInfo {font-size: 22px;}
     .slideInput {height: 50px; font-size:20px;}
     .pageTraversal {height: 60px;}
@@ -6823,7 +6871,7 @@ a:hover {
     .martianHeading {font-size: 34px;}
     .slideSelect {font-size: 24px;}
     .martianUrl {font-size: 18px;}
-    .controlsHeading {font-size: 30px; letter-spacing: 1px;}
+    .controlsHeading, .camerasHeading {font-size: 30px; letter-spacing: 1px;}
     .timingInfo {font-size: 24px;}
     .slideInput {height: 60px; font-size: 22px;}
     .solSelection > span.centred {font-size: 24px;}
@@ -6848,7 +6896,7 @@ a:hover {
     .martianHeading {font-size: 36px;}
     .slideSelect {font-size: 26px;}
     .martianUrl {font-size: 20px;}
-    .controlsHeading {font-size: 32px;}
+    .controlsHeading, .camerasHeading {font-size: 32px;}
     .timingInfo {font-size: 26px;}
     .slideInput {height: 70px; font-size: 24px;}
     .pageTraversal {height: 80px;}

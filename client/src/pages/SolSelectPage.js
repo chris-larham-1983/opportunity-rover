@@ -16,6 +16,8 @@ const SolSelectPage = () => {
     const [manifestDetails, setManifestDetails] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
+    const navigateToSol = useRef(null);
+
     //function to obtain manifest details
     const getManifestDetails = async () => {
         try {
@@ -38,13 +40,13 @@ const SolSelectPage = () => {
     return (
         <div className={styles.bodyStyles}>
             <AppHeading />
-            <PageTraversal />
+            <PageTraversal navigateToSol={navigateToSol} />
             <div className={styles.solLinkContainer}>
                 <IntroPageReturn />
                 <CameraAbbreviations />
                 {errorMessage && <p className={styles.negativeFeedback}>{errorMessage}</p> }
                 {manifestDetails && manifestDetails.map((manifestItem, index) => (
-                    <SolLink key={index} sol={manifestItem.sol} earth_date={manifestItem.earth_date} total_photos={manifestItem.total_photos} cameras={manifestItem.cameras} />
+                    <SolLink key={index} sol={manifestItem.sol} earth_date={manifestItem.earth_date} total_photos={manifestItem.total_photos} cameras={manifestItem.cameras} first_photo_url={manifestItem.first_photo_url} first_photo_alt={manifestItem.first_photo_alt} />
                 ))}
             </div>
         </div>

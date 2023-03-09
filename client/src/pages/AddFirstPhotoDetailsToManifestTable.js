@@ -21,7 +21,7 @@ const AddFirstPhotoDetailsToManifestTable = () => {
 
     const updateManifestTable = async (manifest) => {
         //initializers to be updated next time round
-        for(let index = 0; index < 58; index++) {
+        for(let index = 58; index < manifest.photo_manifest.photos.length; index++) {
             let sol = manifest.photo_manifest.photos[index].sol;
             try {
                 const firstPhotoDetails = await getFirstPhoto(sol, setError);

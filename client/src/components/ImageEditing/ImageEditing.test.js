@@ -3,8 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 //React setup
 import React from 'react';
-//SolSlideshow component
-import SolSlideshow from '../SolSlideshow/SolSlideshow';
 //ImageEditing component
 import ImageEditing from './ImageEditing';
 

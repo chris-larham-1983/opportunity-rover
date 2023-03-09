@@ -11,6 +11,10 @@ import SolHeading from '../components/SolHeading/SolHeading';
 import SolSlideshow from '../components/SolSlideshow/SolSlideshow';
 //<ImageEditing /> component
 import ImageEditing from '../components/ImageEditing/ImageEditing';
+//<CameraFilter /> component
+import CameraFilter from '../components/CameraFilter/CameraFilter';
+//<SolSelection /> component
+import SolSelection from '../components/SolSelection/SolSelection';
 //reusable functions
 import getEarthDate from '../reusable_functions/getEarthDate';
 import getSolCameras from '../reusable_functions/getSolCameras';
@@ -38,7 +42,7 @@ const SolPage = () => {
         getEarthDate(sol).then(earthDate => setEarthDate(earthDate));
         getSolPhotos(sol).then(solPhotos => setSolPhotos(solPhotos));
         getSolCameras(sol).then(solCameras => setSolCameras(solCameras));
-    }, [earthDate, solPhotos]);
+    }, [earthDate]);
 
     //triggered when the User clicks the 'NEXT' button
     const manualNext  = () => {
@@ -100,6 +104,8 @@ const SolPage = () => {
                     <SolHeading heading={`Slide ${slideNumber}/${solPhotos.length}: ${solPhotos[slideIndex].figcaption}`} />
                     <SolSlideshow setPercentageHeight={setPercentageHeight} availableHeight={availableHeight} availableWidth={availableWidth} previousBtn={previousBtn} nextBtn={nextBtn} marsUrl={marsUrl} marsSlide={marsSlide} responsiveDiv={responsiveDiv} url={solPhotos[slideIndex].url} alt={solPhotos[slideIndex].alt} manualNext={manualNext} manualPrevious={manualPrevious} />
                     <ImageEditing availableHeight={availableHeight} availableWidth={availableWidth} percentageHeight={percentageHeight} setPercentageHeight={setPercentageHeight} responsiveDiv={responsiveDiv} marsUrl={marsUrl} marsSlide={marsSlide} nextBtn={nextBtn} previousBtn={previousBtn} />
+                    <CameraFilter sol={sol} cameras={solCameras} setSlideIndex={setSlideIndex} setSlideNumber={setSlideNumber} setSolPhotos={setSolPhotos} />
+                    <SolSelection />
                 </Fragment>
             }
         </div>

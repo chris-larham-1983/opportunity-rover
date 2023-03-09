@@ -42,8 +42,8 @@ const SolOverview = ({ availableHeight, setPercentageHeight, responsiveDiv, mars
                 <h1 className={`font-effect-anaglyph ${styles.martianHeading}`} data-testid="heading" id="martianHeading" ref={headingElement}></h1>
             </div>
             <div className={styles.marsTableHeader} data-testid="contentDiv3">
-                <label htmlFor="slideSelector" className={`${styles.slideSelect} ${styles.centered}`} data-testid="slideSelect">Enter Slide Number</label>
-                <input id="slideSelector" className={styles.slideInput} type="number" placeholder={`1 - ${lastSlide}...`} data-testid="slideInput" min="1" max={`${lastSlide}`} ref={slideInput} onInput={(e) => updateSlide(e)} />
+                <label htmlFor="slideSelector" className={`${styles.slideSelect} ${styles.centered}`} data-testid="slideSelect">Slide (1 - {lastSlide})</label>
+                <input id="slideSelector" className={styles.slideInput} type="number" placeholder={`1 - ${lastSlide}...`} data-testid="slideInput" min="1" max={`${lastSlide}`} ref={slideInput} value={slideNumber} onInput={(e) => updateSlide(e)} />
             </div>
         </div>
     )

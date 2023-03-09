@@ -31,7 +31,7 @@ const ImageEditing = ({ availableHeight, availableWidth, percentageHeight, setPe
         } else {
             setShowEditingDiv(true);
             editingDivScrollTimer = setTimeout(() => {
-                editingDiv.current.scrollIntoView();
+                editingDiv.current.scrollIntoView(false);
             }, 125);
         }
     };
