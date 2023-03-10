@@ -38,11 +38,25 @@ const SolPage = () => {
     const marsSlide = useRef(null);
     const responsiveDiv = useRef(null);
 
+    //variables to ensure that only 1 request is made for earthDate, solPhotos, and solCameras
+    const earthDateRequests = useRef(0);
+    const solPhotosRequests = useRef(0);
+    const solCamerasRequests = useRef(0);
+
     useEffect(() => {
-        getEarthDate(sol).then(earthDate => setEarthDate(earthDate));
-        getSolPhotos(sol).then(solPhotos => setSolPhotos(solPhotos));
-        getSolCameras(sol).then(solCameras => setSolCameras(solCameras));
-    }, [earthDate]);
+        if(earthDateRequests.current === 0) {
+            getEarthDate(sol).then(earthDate => setEarthDate(earthDate));
+            earthDateRequests.current += 1;
+        }
+        if(solPhotosRequests.current === 0) {
+            getSolPhotos(sol).then(solPhotos => setSolPhotos(solPhotos));
+            solPhotosRequests.current += 1;
+        }
+        if(solCamerasRequests.current === 0) {
+            getSolCameras(sol).then(solCameras => setSolCameras(solCameras));
+            solCamerasRequests.current += 1;
+        }
+    }, []);
 
     //triggered when the User clicks the 'NEXT' button
     const manualNext  = () => {
@@ -55,7 +69,7 @@ const SolPage = () => {
             //increment 'slideIndex' by one
             setSlideIndex(slideIndex + 1);
             //set 'slideNumber' to 'slideIndex' plus one
-            setSlideNumber(slideIndex + 2);
+            setSlideNumber(slideNumber + 1);
         }
         //otherwise, if 'slideIndex' is NOT less than the length of the 'solPhotos' array minus one
         else {

@@ -11,10 +11,8 @@ const path = require('path');
 //middleware
 app.use(cors()); //allows the front end to communicate with the back end (REACT <--> NODE)
 
-//facilitate access to req.body and allow stripe payment details to be sent to POST /webhook endpoint
-app.use(express.json({
-    verify: (req, res, buffer) => req['rawBody'] = buffer,
-}));
+//facilitate access to req.body
+app.use(express.json());
 
 //ensure correct directory paths in production
 if(process.env.NODE_ENV === 'production') {
@@ -23,7 +21,7 @@ if(process.env.NODE_ENV === 'production') {
 
 //ROUTES:
 
-//add manifest items to Opportunity database
+//manifest route
 app.use("/manifest", require("./routes/manifest"));
 //photos route
 app.use("/photos", require("./routes/photos"));

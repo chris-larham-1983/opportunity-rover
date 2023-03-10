@@ -1,5 +1,5 @@
 //React setup
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 //Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +16,9 @@ const IntroPageReturn = () => {
     //variables to store/set the failure message returned by the server in response to a request for the random photo
     const [error, setError] = useState(null);
 
+    //variables to ensure that the first photo is only requested once
+    const firstPhotoRequests = useRef(0);
+
     //function to get the random photo to use in this link component
     const getRandomPhoto = async () => {
         try {
@@ -23,6 +26,8 @@ const IntroPageReturn = () => {
                 method: 'GET'
             });
             const randomPhoto = await getRandomPhoto.json();
+            //set error to null if no error has been thrown by this point in the code
+            setError(null);
             return randomPhoto;
         } catch(err) {
             setError(`${err.message}`);
@@ -31,7 +36,11 @@ const IntroPageReturn = () => {
 
     //component load logic
     useEffect(() => {
-        getRandomPhoto().then(randomPhoto => setRandomPhoto(randomPhoto));
+        //if random photo details have not been requested OR an error was returned from the previous call
+        if(firstPhotoRequests.current === 0 || error) {
+            getRandomPhoto().then(randomPhoto => setRandomPhoto(randomPhoto));
+            firstPhotoRequests.current += 1;
+        }
     }, []);
 
     //<IntroPageReturn /> component presentation

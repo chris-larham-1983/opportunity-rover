@@ -18,6 +18,9 @@ const SolSelectPage = () => {
 
     const navigateToSol = useRef(null);
 
+    //variables to ensure that manifest is only requested once
+    const manifestRequests = useRef(0);
+
     //function to obtain manifest details
     const getManifestDetails = async () => {
         try {
@@ -25,6 +28,8 @@ const SolSelectPage = () => {
                 method: 'GET'
             });
             const manifestDetails = await getManifestDetails.json();
+            //set errorMessage to null if no error has been thrown by this point in the code
+            setErrorMessage(null);
             return manifestDetails;
         } catch(err) {
             setErrorMessage(`The following error occurred while loading the page: ${err.message}.  Please try refreshing the page.`);
@@ -33,7 +38,11 @@ const SolSelectPage = () => {
 
     //page load logic
     useEffect(() => {
-        getManifestDetails().then(manifestDetails => setManifestDetails(manifestDetails));
+        //if no manifest request has been made OR an error was returned from the previous call
+        if(manifestRequests.current === 0 || errorMessage) {
+            getManifestDetails().then(manifestDetails => setManifestDetails(manifestDetails));
+            manifestRequests.current += 1;
+        }
     }, []);
 
     //<SolSelectPage /> presentation
@@ -41,6 +50,9 @@ const SolSelectPage = () => {
         <div className={styles.bodyStyles}>
             <AppHeading />
             <PageTraversal navigateToSol={navigateToSol} />
+            <p className={styles.pageTraversal} style={{ textAlign: "center"}}>
+                <span className={styles.loadingMessage}>Photo data can take several seconds to load.  Please wait for data to load before using page navigation functionality.</span>
+            </p>
             <div className={styles.solLinkContainer}>
                 <IntroPageReturn />
                 <CameraAbbreviations />
