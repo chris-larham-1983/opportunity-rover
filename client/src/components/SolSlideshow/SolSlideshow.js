@@ -3,8 +3,10 @@ import React, { useEffect } from 'react';
 //styling
 import styles from '../../styling/styling.module.css';
 
+//an image slideshow component - the 'slideIndex' prop is necessary as it is changed by clicking the forward/backward buttons and causes the component to re-render with the new image and caption text
 const SolSlideshow = ({ setPercentageHeight, availableHeight, availableWidth, manualPrevious, manualNext, url, alt, previousBtn, nextBtn, marsUrl, responsiveDiv, marsSlide, slideIndex }) => {
 
+    //function triggered by clicking the martian image
     const departFullscreen = () => {
         //define the 'availableHeight' variable as equal to the viewport's height
         availableHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;

@@ -44,7 +44,7 @@ describe("The <ImageEditing /> component", () => {
                     fireEvent.click(controlsHeading);
                     expect(document.getElementsByTagName("LABEL").length).toEqual(8);
                 });
-                it("enables the User to alter the martian image's width, with the percentage displayed on the slider thumb", () => {
+                it("enables the User to alter the martian image's width, with the percentage width displayed on the slider thumb", () => {
                     const controlsHeading = screen.getByTestId("controlsHeading");
                     fireEvent.click(controlsHeading);
                     const widthEditor = screen.getByTestId("widthEditor");
@@ -70,7 +70,7 @@ describe("The <ImageEditing /> component", () => {
                     fireEvent.click(increaseWidth);
                     expect(widthRange.getAttribute("value")).not.toBe("101");
                 });
-                it("enables the User to alter the martian image's height, with the percentage displayed on the slider thumb", () => {
+                it("enables the User to alter the martian image's height, with the percentage height displayed on the slider thumb", () => {
                     const controlsHeading = screen.getByTestId("controlsHeading");
                     fireEvent.click(controlsHeading);
                     const heightEditor = screen.getByTestId("heightEditor");

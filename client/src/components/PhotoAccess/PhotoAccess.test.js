@@ -83,14 +83,16 @@ describe("The <PhotoAccess /> component", () => {
     });
     it("displays coral text with a box shadow on hover, with a 0.4 second transition duration", () => {
         const roverButton = screen.getByTestId("roverButton");
+        roverButton.style.cssText = mockStyles.standard;
         expect(roverButton).not.toHaveStyle("color: coral");
-        expect(roverButton).not.toHaveStyle("box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)")
+        expect(roverButton).not.toHaveStyle("box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)");
+        expect(roverButton).toHaveStyle("transition-duration: 0.4s");
         roverButton.addEventListener("mouseover", () => {
             roverButton.style.cssText = mockStyles.hover;
         });
         fireEvent.mouseOver(roverButton);
         expect(roverButton).toHaveStyle("color: coral");
-        expect(roverButton).toHaveStyle("box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)")
+        expect(roverButton).toHaveStyle("box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)");
     });
     it("navigates the User to a sol selection screen when clicked", () => {
         expect(window.location.href).not.toContain("/solSelect");

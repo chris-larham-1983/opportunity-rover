@@ -9,8 +9,8 @@ import ReactDOM from 'react-dom';
 //styling
 import mockStyles from './mockStyles';
 import styles from '../../styling/styling.module.css';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHandPointLeft} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHandPointLeft } from "@fortawesome/free-solid-svg-icons";
 
 describe("The <IntroPageReturn /> element", () => {
     beforeEach(() => {
@@ -91,9 +91,3 @@ describe("The <IntroPageReturn /> element", () => {
         });
     });
 });
-
-
-
-
-
-

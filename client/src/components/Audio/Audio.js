@@ -148,7 +148,7 @@ const Audio = () => {
             if(!musicPlayer) {
                 //make the 'musicPlayer' variable refer to the 'musicPlayer' <audio> element
                 musicPlayer = document.getElementById("musicPlayer");
-                //make the 'musicalProgress' variable refer to the 'musicProgress' <progress> element
+                //make the 'musicalProgress' variable refer to the 'musicalProgress' <progress> element
                 musicalProgress = document.getElementById("musicalProgress");
                 //make the 'musicalPercentage' variable refer to the 'musicalPercentage' <p> element
                 musicalPercentage = document.getElementById("musicalPercentage");

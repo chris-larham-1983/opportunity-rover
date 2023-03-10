@@ -24,13 +24,13 @@ const PageTraversal = ({ navigateToSol }) => {
             let solLink = document.getElementById(sol.toString());
             //if 'solLink' refers to an actual element (and thus doesn't return a 'falsy' value)
             if(solLink) {
-                //scroll solButton into view
+                //scroll solLink into view
                 window.location.href = `#${sol}`;
             } else {
                 //if 'sol' is less than 5111 (the setSol function is only called if the input sol is between 1 and 5111)
                 if(sol < 5111) {
                     let tempSol = sol;
-                    //while there is no link for the chosen sol
+                    //while there is no link for the chosen sol and tempSol is less than 5111
                     while(!solLink && tempSol < 5111) {
                         tempSol += 1;
                         solLink = document.getElementById(tempSol.toString());

@@ -28,9 +28,9 @@ describe("the <SolLink /> component", () => {
                         </Link>
                         <p className={styles.solStats}
                            data-testid="solStats">
-                            Sol: 1 (2004-01-26)<br/>
-                            Total Photos: 95<br/>
-                            Cameras: "ENTRY", "FHAZ", "NAVCAM", "PANCAM", "RHAZ"<br/>
+                            Sol: 1 (2004-01-26)<br />
+                            Total Photos: 95<br />
+                            Cameras: "ENTRY", "FHAZ", "NAVCAM", "PANCAM", "RHAZ"<br />
                             <a className={styles.anchorStyles} href="#pageTraversal">^ Page Traversal ^</a>
                         </p>
                     </figure>

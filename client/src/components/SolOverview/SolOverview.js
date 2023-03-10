@@ -28,6 +28,7 @@ const SolOverview = ({ availableHeight, setPercentageHeight, responsiveDiv, mars
         }
     };
 
+    //component load logic
     useEffect(() => {
         headingElement.current.innerHTML = heading;
     }, [heading]);

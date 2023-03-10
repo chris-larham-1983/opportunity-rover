@@ -1,5 +1,5 @@
 //React setup
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 //Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -37,6 +37,7 @@ const IntroPageReturn = () => {
     //<IntroPageReturn /> component presentation
     return (
         <div className={styles.fitContent}>
+            {error && <p className={styles.negativeFeedback}>An error occurred while requesting the photo.  Try refreshing the page.</p>}
             {randomPhoto &&
                 <figure className={styles.introReturn} data-testid="introReturn">
                     <Link to={`/intro`} className={styles.introReturnRepresentative}>

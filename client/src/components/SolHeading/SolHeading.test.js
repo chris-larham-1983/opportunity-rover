@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 //styling
 import mockStyles from './mockStyles';
 //<SolHeading /> component
-import SolHeading from '../SolHeading/SolHeading';
+import SolHeading from './SolHeading';
 
 describe("The <SolHeading /> component", () => {
     beforeEach(() => {

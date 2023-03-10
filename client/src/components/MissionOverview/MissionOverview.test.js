@@ -32,6 +32,7 @@ describe("The <MissionOverview /> component", () => {
             const missionParagraph = document.getElementsByTagName("P")[2];
             missionParagraph.style.cssText = mockStyles;
             expect(missionParagraph).toHaveStyle("font-family: 'ZCOOL QingKe HuangYou', sans-serif");
+            expect(missionParagraph).toHaveStyle("font-size: 30px");
         });
         test("has centrally-aligned text", () => {
             const missionParagraph = document.getElementsByTagName("P")[3];

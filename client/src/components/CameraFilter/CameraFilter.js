@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import styles from '../../styling/styling.module.css';
 //Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCamera, faCameraRetro, faHandPointRight, faWandMagicSparkles} from '@fortawesome/free-solid-svg-icons';
+import { faCamera, faCameraRetro, faHandPointRight } from '@fortawesome/free-solid-svg-icons';
 
 const CameraFilter = ({ sol, cameras, setSolPhotos, setSlideIndex, setSlideNumber }) => {
 

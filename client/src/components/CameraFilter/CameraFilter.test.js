@@ -1,5 +1,5 @@
 //testing library elements
-import {render, screen, fireEvent, waitFor} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 //React setup
 import React from 'react';
@@ -225,7 +225,7 @@ describe("The <CameraFilter /> component", () => {
                         expect(submitButton).toBeInTheDocument();
                     });
                     describe("the 'submit' <button>", () => {
-                        it("filters the photos, based on the checkboxes that the User has ticked", async () => {
+                        it("filters the photos, based on the checkboxes that the User has ticked", () => {
                             const camerasHeading = screen.getByTestId("camerasHeading");
                             fireEvent.click(camerasHeading);
                             const fhaz = screen.getByTestId("FHAZ");
