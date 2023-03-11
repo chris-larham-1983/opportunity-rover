@@ -1,9 +1,11 @@
-# Mars Imgs eCommerce App
+# Opportunity Rover App
 
 ## Table of Contents
 
 * [General Information](#general-information)
-* [Project Flow Diagram](#project-flow-diagram)
+* [Component Design](#component-design)
+* [Unit Tests](#unit-tests)
+* [Audio Component Logical Algorithm Diagram](#audio-component-logical-algorithm-diagram)
 * [Entity Relationship Diagram](#entity-relationship-diagram)
 * [Technologies](#technologies)
 * [Using the App](#using-the-app)
@@ -13,62 +15,157 @@
 
 ### General Information
 
-This is my solution to the **Codecademy** portfolio project entitled *Create an e-commerce application*, wherein I had to design 
-a fully-functioning e-commerce application that allows users to perform various *CRUD* operations such as registering for 
-an account, browsing products, adding products to cart, completing a purchase, checking order history etc. 
+This is my solution to the **Codecademy** portfolio project entitled *Final PERN App*, an open-ended project that had to be built 
+using the PERN stack. 
 
 The application had to satisfy the following requirements:
 
-- be built using the <strong>PERN</strong> stack (<strong>P</strong>ostgreSQL, <strong>E</strong>xpress, <strong>R</strong>eact, <strong>N</strong>ode.js)
-- enable users to create a personal account
-- enable users to browse products
-- enable users to complete a purchase using a payment processor (Stripe)
-- enable users to view order history
+- have a front-end built using <em>React.js</em>
+- have a server built using <em>Node.js</em> and <em>Express.js</em>
+- use a <em>PostgreSQL</em> database to store data
+- be written with the best security principles in mind
+- include unit tests to ensure the integrity of the code
 - use Git version control
 - be developed locally 
 - be published on Heroku
 
-In addition, I added the ability for logged-in users to add items to their wishlist, and for them to update their delivery address.  A basic email 
-is also sent to the customer on completion of a successful transaction.
+I decided to design an app that allows Users to view all the publicly-available images taken by the <em>Opportunity Rover</em> during its 
+lifetime on Mars.  I wrote code that communicated with the open-source <em>NASA Mars Rover API</em> for several hours in order to extract 
+all the necessary image data; I inserted the relevant data from each NASA API response to my local PostgreSQL database.
+
+I wrote unit tests (340 in total) as I was building the app in order to ensure that the presentation and functionality of each component 
+matched my specifications.  The components used in the app are explained in the images below.
 
 ***
 
-### Project Flow Diagram
+### Component Design
 
-![project flow diagram][project flow diagram]
+![Component Design][Component Design]
 
-[project flow diagram]: diagrams/Site%20Navigation.png
+[Component Design]: diagrams/Opportunity_App_Components.png
+
+***
+
+### Unit Tests
+
+![Audio Unit Tests][Audio Unit Tests]
+
+[Audio Unit Tests]: diagrams/Audio_Unit_Tests.PNG
+
+![AppHeading Unit Tests][AppHeading Unit Tests]
+
+[AppHeading Unit Tests]: diagrams/AppHeading_Unit_Tests.PNG
+
+![MissionOverview Unit Tests][MissionOverview Unit Tests]
+
+[MissionOverview Unit Tests]: diagrams/MissionOverview_Unit_Tests.PNG
+
+![IntroSlideshow Unit Tests][IntroSlideshow Unit Tests]
+
+[IntroSlideshow Unit Tests]: diagrams/IntroSlideshow_Unit_Tests.PNG
+
+![PhotoAccess Unit Tests][PhotoAccess Unit Tests]
+
+[PhotoAccess Unit Tests]: diagrams/PhotoAccess_Unit_Tests.PNG
+
+![TextCredit Unit Tests][TextCredit Unit Tests]
+
+[TextCredit Unit Tests]: diagrams/TextCredit_Unit_Tests.PNG
+
+![PageTraversal Unit Tests][PageTraversal Unit Tests]
+
+[PageTraversal Unit Tests]: diagrams/PageTraversal_Unit_Tests.PNG
+
+![IntroPageReturn Unit Tests][IntroPageReturn Unit Tests]
+
+[IntroPageReturn Unit Tests]: diagrams/IntroPageReturn_Unit_Tests.PNG
+
+![CameraAbbreviations Unit Tests][CameraAbbreviations Unit Tests]
+
+[CameraAbbreviations Unit Tests]: diagrams/CameraAbbreviations_Unit_Tests.PNG
+
+![SolLink Unit Tests][SolLink Unit Tests]
+
+[SolLink Unit Tests]: diagrams/SolLink_Unit_Tests.PNG
+
+![SolOverview Unit Tests I][SolOverview Unit Tests I]
+
+[SolOverview Unit Tests I]: diagrams/SolOverview_Unit_Tests_I.PNG
+
+![SolOverview Unit Tests II][SolOverview Unit Tests II]
+
+[SolOverview Unit Tests II]: diagrams/SolOverview_Unit_Tests_II.PNG
+
+![SolOverview Unit Tests III][SolOverview Unit Tests III]
+
+[SolOverview Unit Tests III]: diagrams/SolOverview_Unit_Tests_III.PNG
+
+![SolHeading Unit Tests][SolHeading Unit Tests]
+
+[SolHeading Unit Tests]: diagrams/SolHeading_Unit_Tests.PNG
+
+![SolSlideshow Unit Tests I][SolSlideshow Unit Tests I]
+
+[SolSlideshow Unit Tests I]: diagrams/SolSlideshow_Unit_Tests_I.PNG
+
+![SolSlideshow Unit Tests II][SolSlideshow Unit Tests II]
+
+[SolSlideshow Unit Tests II]: diagrams/SolSlideshow_Unit_Tests_II.PNG
+
+![ImageEditing Unit Tests][ImageEditing Unit Tests]
+
+[ImageEditing Unit Tests]: diagrams/ImageEditing_Unit_Tests.PNG
+
+![CameraFilter Unit Tests I][CameraFilter Unit Tests I]
+
+[CameraFilter Unit Tests I]: diagrams/CameraFilter_Unit_Tests_I.PNG
+
+![CameraFilter Unit Tests II][CameraFilter Unit Tests II]
+
+[CameraFilter Unit Tests II]: diagrams/CameraFilter_Unit_Tests_II.PNG
+
+![SolSelection Unit Tests][SolSelection Unit Tests]
+
+[SolSelection Unit Tests]: diagrams/SolSelection_Unit_Tests.PNG
+
+***
+
+### Audio Component Logical Algorithm Diagram
+
+![audio component logical algorithm diagram][audio component logical algorithm diagram]
+
+[audio component logical algorithm diagram]: diagrams/audio_component_logic.png
 ***
 
 ### Entity Relationship Diagram
 
 ![Entity Relationship Diagram][entity relationship diagram]
 
-[entity relationship diagram]: diagrams/Codecademy%20Project%20ERD.png
+[entity relationship diagram]: diagrams/Opportunity_Rover_Database_Tables.png
 
 ***
 
 ### Technologies
   
-I wrote this **e-commerce application** using the following technologies:
+I wrote this **Final PERN App** using the following technologies:
 
 - *JavaScript*
-- *Express*
+- *React.js*
+- *React Testing Library and Jest*
+- *Express.js*
 - *Node.js* 
-- *PostgreSQL*
-- *React* (including *react-toastify* for customer notifications)
-- *JSON Web Token* (for customer authentication)
+- *PostgreSQL* 
 - *Git and GitHub*
 - *Command Line*
 - *Entity Relationship Diagram (LucidChart)*
-- *Project Flow Diagram (LucidSpark)*  
+- *Algorithm Diagram (LucidSpark)*  
 ***
 
 ### Using the App
 
 This e-commerce application can be viewed and interacted with:
 
-- https://mars-imgs-ecommerce.herokuapp.com
+- https://opportunity-rover.herokuapp.com
 
 ***
 
