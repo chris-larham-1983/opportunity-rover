@@ -1,4 +1,4 @@
-module.exports = async (sol) => {
+const getSolCameras = async (sol) => {
     try {
         //request all the cameras
         const getAllSolCameras = await fetch(`/utilities/getAllCameras/${sol}`, {
@@ -12,3 +12,5 @@ module.exports = async (sol) => {
         return `${err.message}`;
     }
 };
+
+export default getSolCameras;

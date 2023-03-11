@@ -1,4 +1,4 @@
-module.exports = async (sol) => {
+const getEarthDate = async (sol) => {
     try {
         const retrieveEarthDate = await fetch(`/utilities/solToEarthDate/${sol}`, {
             method: 'GET'
@@ -10,3 +10,5 @@ module.exports = async (sol) => {
         return `${err.message}`;
     }
 };
+
+export default getEarthDate;

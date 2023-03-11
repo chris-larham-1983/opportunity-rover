@@ -1,4 +1,4 @@
-module.exports = async (sol) => {
+const getSolPhotos = async (sol) => {
     try {
         const getAllSolPhotos = await fetch(`/photos/${sol}/getAllPhotos`, {
             method: 'GET'
@@ -9,3 +9,5 @@ module.exports = async (sol) => {
         return `${err.message}`;
     }
 };
+
+export default getSolPhotos;

@@ -1,5 +1,5 @@
 //function to get the first photo for the passed-in sol
-module.exports = async (sol, setError) => {
+const getFirstPhoto = async (sol, setError) => {
     try {
         const getFirstPhoto = await fetch(`/photos/${sol}/getFirstPhoto`, {
             method: 'GET'
@@ -9,4 +9,6 @@ module.exports = async (sol, setError) => {
     } catch(err) {
         setError(`${err.message}`);
     }
-}
+};
+
+export default getFirstPhoto;
