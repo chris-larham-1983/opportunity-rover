@@ -447,6 +447,7 @@ button {
     width: 90%;
     border-radius: 3px;
     font-weight: bold;
+    padding: 3px;
 }
 .slideSelect {
     font-size: 26px;
@@ -552,6 +553,7 @@ a:hover {
     padding: 5px;
     border-radius: 3px;
     cursor: pointer;
+    margin: 5px;
 }
 .editingDiv {
     width: 100%;
@@ -653,9 +655,9 @@ a:hover {
     .navigateToSol {font-size: 18px; height: 40px;}
     .titleReturn {font-size: 20px;}
     .fullscreenBtn {height: 60px; font-size: 16px;}
-    .martianHeading {font-size: 30px;}
+    .martianHeading {font-size: 26px; padding: 3px;}
     .martianUrl {font-size: 14px;}
-    .controlsHeading, .camerasHeading {font-size: 26px; letter-spacing: 1px;}
+    .controlsHeading, .camerasHeading {font-size: 26px; letter-spacing: 1px; margin: 5px;}
     .timingInfo {font-size: 20px;}
     .slideSelect {font-size: 20px;}
     .slideInput {height: 40px; font-size:18px;}
@@ -678,10 +680,10 @@ a:hover {
     .navigateToSol {font-size: 20px; height: 50px;}
     .titleReturn {font-size: 22px;}
     .fullscreenBtn {height: 60px; font-size: 18px;}
-    .martianHeading {font-size: 32px;}
+    .martianHeading {font-size: 28px; padding: 3px;}
     .slideSelect {font-size: 22px;}
     .martianUrl {font-size: 16px;}
-    .controlsHeading, .camerasHeading {font-size: 28px; letter-spacing: 1px;}
+    .controlsHeading, .camerasHeading {font-size: 28px; letter-spacing: 1px; margin: 5px;}
     .timingInfo {font-size: 22px;}
     .slideInput {height: 50px; font-size:20px;}
     .pageTraversal {height: 60px;}
@@ -703,10 +705,10 @@ a:hover {
     .navigateToSol {font-size: 22px; height: 60px;}
     .titleReturn {font-size: 24px;}
     .fullscreenBtn {height: 60px; font-size: 24px;}
-    .martianHeading {font-size: 34px;}
+    .martianHeading {font-size: 34px; padding: 3px;}
     .slideSelect {font-size: 24px;}
     .martianUrl {font-size: 18px;}
-    .controlsHeading, .camerasHeading {font-size: 30px; letter-spacing: 1px;}
+    .controlsHeading, .camerasHeading {font-size: 30px; letter-spacing: 1px; margin: 5px;}
     .timingInfo {font-size: 24px;}
     .slideInput {height: 60px; font-size: 22px;}
     .solSelection > span.centred {font-size: 24px;}
@@ -729,10 +731,10 @@ a:hover {
     .navigateToSol {font-size: 24px; height: 70px;}
     .titleReturn {font-size: 26px;}
     .fullscreenBtn {height: 70px; font-size: 26px;}
-    .martianHeading {font-size: 36px;}
+    .martianHeading {font-size: 36px; padding: 3px;}
     .slideSelect {font-size: 26px;}
     .martianUrl {font-size: 20px;}
-    .controlsHeading, .camerasHeading {font-size: 32px;}
+    .controlsHeading, .camerasHeading {font-size: 32px; margin: 5px;}
     .timingInfo {font-size: 26px;}
     .slideInput {height: 70px; font-size: 24px;}
     .pageTraversal {height: 80px;}
