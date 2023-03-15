@@ -11,7 +11,7 @@ import mockStyles from './mockStyles';
 
 describe("The <PageTraversal /> component", () => {
     beforeEach(() => {
-        render(<PageTraversal />);
+        render(<PageTraversal min={1} lastLoaded={5111} />);
     });
     it("has a class attribute of 'pageTraversal'", () => {
         const pageTraversal = screen.getByTestId("pageTraversal");
@@ -130,7 +130,7 @@ describe("The <PageTraversal /> component", () => {
         it("enables the user to traverse the page", () => {
             cleanup();
             render(<div>
-                <PageTraversal />
+                <PageTraversal min={1} lastLoaded={5111} />
                 <figure id='1'>Test Paragraph 1</figure>
                 <figure id='2'>Test Paragraph 2</figure>
                 <figure id='3'>Test Paragraph 3</figure>

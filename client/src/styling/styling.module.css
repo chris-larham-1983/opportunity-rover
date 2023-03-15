@@ -153,7 +153,7 @@ button {
     font-weight: bold;
     text-align: center;
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
-    font-size: 1.25em;
+    font-size: 1.125em;
 }
 .audio5 {
     background-color: lightgreen;
@@ -295,6 +295,13 @@ button {
     font-family: 'ZCOOL QingKe HuangYou', sans-serif;
     margin-left: auto;
     margin-right: auto;
+}
+.linkStyles {
+    color: #000080;
+    font-size: 18px;
+}
+.linkStyles:hover {
+    color: white;
 }
 .desiredSol {
     font-size: 24px;
@@ -651,6 +658,7 @@ a:hover {
     .roverButton {font-size: 24px;}
     .textCredit {font-size: 20px;}
     .loadingMessage {font-size: 14px;}
+    .linkStyles {font-size: 12px;}
     .desiredSol {font-size: 18px; height: 40px;}
     .navigateToSol {font-size: 18px; height: 40px;}
     .titleReturn {font-size: 20px;}
@@ -676,6 +684,7 @@ a:hover {
     .roverButton {font-size: 26px;}
     .textCredit {font-size: 22px;}
     .loadingMessage {font-size: 16px;}
+    .linkStyles {font-size: 14px;}
     .desiredSol {font-size: 20px; height: 50px;}
     .navigateToSol {font-size: 20px; height: 50px;}
     .titleReturn {font-size: 22px;}
@@ -701,6 +710,7 @@ a:hover {
     .roverButton {font-size: 28px;}
     .textCredit {font-size: 24px;}
     .loadingMessage {font-size: 18px;}
+    .linkStyles { font-size: 16px;}
     .desiredSol {font-size: 22px; height: 60px;}
     .navigateToSol {font-size: 22px; height: 60px;}
     .titleReturn {font-size: 24px;}
@@ -728,6 +738,7 @@ a:hover {
     .textCredit {font-size: 26px;}
     .desiredSol {font-size: 24px; height: 70px;}
     .loadingMessage {font-size: 20px;}
+    .linkStyles {font-size: 18px;}
     .navigateToSol {font-size: 24px; height: 70px;}
     .titleReturn {font-size: 26px;}
     .fullscreenBtn {height: 70px; font-size: 26px;}
