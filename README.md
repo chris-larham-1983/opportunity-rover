@@ -163,7 +163,7 @@ I wrote this **Final PERN App** using the following technologies:
 
 ### Using the App
 
-This e-commerce application can be viewed and interacted with:
+This **Final PERN App** can be viewed and interacted with:
 
 - https://opportunity-rover.herokuapp.com
 
